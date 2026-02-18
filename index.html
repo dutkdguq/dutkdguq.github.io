@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여상협 | CV & Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+            --accent: #22d3ee;
+            --accent-dim: #0891b2;
+            --accent-glow: rgba(34, 211, 238, 0.15);
+            --gold: #e2b45a;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --gradient-1: linear-gradient(135deg, #0891b2, #22d3ee);
+            --gradient-2: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 3px; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.8rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border: 1px solid var(--accent-dim);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 .accent { color: var(--accent); }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 550px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.7rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-dim), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.55rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+
+        .timeline-badge.gold {
+            background: rgba(226, 180, 90, 0.15);
+            color: var(--gold);
+        }
+
+        /* Publication Cards */
+        .pub-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pub-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pub-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-dim);
+            transform: translateX(4px);
+        }
+
+        .pub-card.featured {
+            border-left: 3px solid var(--gold);
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(226, 180, 90, 0.05) 100%);
+        }
+
+        .pub-card.featured .pub-journal { color: var(--gold); }
+
+        .pub-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.04);
+        }
+
+        .pub-meta {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pub-journal {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pub-level {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .pub-status {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .pub-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .pub-role strong {
+            color: var(--accent);
+        }
+
+        /* Achievement Cards */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .achievement-card:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-2px);
+        }
+
+        .achievement-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-glow);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .achievement-card.award .achievement-icon {
+            background: rgba(226, 180, 90, 0.15);
+            color: var(--gold);
+        }
+
+        .achievement-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .achievement-detail {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .achievement-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-stats { gap: 1.5rem; }
+            .stat-number { font-size: 1.6rem; }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.75rem; }
+            .container { padding: 0 1.2rem; }
+            .section-title { font-size: 1.5rem; }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="container">
+        <a href="#" class="logo">YSH</a>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-label">Researcher & Engineer</div>
+            <h1>여상협<br><span class="accent">Sanghyeop Yeo</span></h1>
+            <p class="hero-subtitle">
+                연세대학교 IT융합공학과 석사과정 · Seamless Transportation Lab (STL)<br>
+                SWIR 이미징, 멀티스펙트럴 센서 융합, 자율주행 인지시스템 연구
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Patents</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Software</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Minister Award</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">About Me</div>
+            <h2 class="section-title">연구 소개</h2>
+        </div>
+        <div class="fade-in" style="max-width: 700px; color: var(--text-secondary); font-size: 0.95rem;">
+            <p style="margin-bottom: 1rem;">
+                연세대학교 IT융합공학과 Seamless Transportation Lab에서 석사과정을 수행하고 있습니다.
+                주로 <strong style="color: var(--accent);">Short-Wave Infrared (SWIR) 이미징</strong>과
+                <strong style="color: var(--accent);">멀티스펙트럴 센서 융합</strong>을 활용하여
+                악천후 환경에서의 강건한 자율주행 인지시스템 연구를 진행하고 있습니다.
+            </p>
+            <p>
+                입학 이후 SCI 논문 7편을 포함한 총 9편의 논문에 참여하였으며,
+                그 중 1저자 논문 1편(SCI SJR Top 5.5%)을 게재하였습니다.
+                또한 특허 2건 출원, 소프트웨어 1건 등록, 산업통상자원부장관상 수상 등의 성과를 이루었습니다.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline -->
+<section id="timeline" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Timeline</div>
+            <h2 class="section-title">주요 활동 타임라인</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2024.11</div>
+                <div class="timeline-title">Applied Sciences — SWIR 재질구분 논문 게재</div>
+                <div class="timeline-desc">Short-Wave Infrared Imaging for Robust Material Classification (SCI)</div>
+                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--text-primary);">역할:</strong> 데이터 취득, 논문 번역, Related Work 작성</div>
+                <span class="timeline-badge">SCI Published</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2024.11</div>
+                <div class="timeline-title">특허 출원 — 물방울 왜곡 현상 없는 영상 데이터</div>
+                <div class="timeline-desc">출원번호: 10-2024-0160566</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2024.11</div>
+                <div class="timeline-title">소프트웨어 등록 — 실시간 날씨 인식 S/W</div>
+                <div class="timeline-desc">등록번호: C-2024-048597</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2024</div>
+                <div class="timeline-title">산학프로젝트챌린지 — 산업통상자원부장관상 수상</div>
+                <div class="timeline-desc">데이터 취득, 발표 자료 및 프로젝트 보고서 작성</div>
+                <span class="timeline-badge gold"><i class="fas fa-trophy"></i> 장관상</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.02</div>
+                <div class="timeline-title">특허 출원 — 왜곡 제거 이미지 획득 방법 및 장치</div>
+                <div class="timeline-desc">출원번호: 10-2025-0015158</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.04</div>
+                <div class="timeline-title">Applied Sciences — LLM 진위판별 논문 게재</div>
+                <div class="timeline-desc">Exploring the Limits of LLMs' Ability to Distinguish Between Objects (SCI)</div>
+                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--text-primary);">역할:</strong> 데이터 취득</div>
+                <span class="timeline-badge">SCI Published</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.10</div>
+                <div class="timeline-title">ICCV2025 Workshop — IVIFormer 논문 게재</div>
+                <div class="timeline-desc">Illumination-Aware Infrared-Visible Image Fusion (MIRA Workshop)</div>
+                <span class="timeline-badge">Workshop Published</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.10</div>
+                <div class="timeline-title">Information Fusion — RASMD 데이터셋 논문 게재</div>
+                <div class="timeline-desc">RGB And SWIR Multispectral Driving Dataset (SCI IF Top 1.7%)</div>
+                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--text-primary);">역할:</strong> 멀티스펙트럴 데이터셋 취득, 카메라 캘리브레이션 및 이미지 정렬</div>
+                <span class="timeline-badge">SCI Top Journal</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.11</div>
+                <div class="timeline-title">Measurement — SWIR 빗방울 투시 논문 게재 (1저자)</div>
+                <div class="timeline-desc">Seeing through the rain: SWIR imaging for autonomous vehicle perception (SCI SJR Top 5.5%)</div>
+                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--gold);">★ 1저자:</strong> 실험 설계, 데이터 취득, 논문 작성 전체 수행</div>
+                <span class="timeline-badge gold">★ 1st Author · SCI Top 5.5%</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.11</div>
+                <div class="timeline-title">WACV2026 — RPT-SR 논문 Accepted</div>
+                <div class="timeline-desc">Regional Prior Attention Transformer for Infrared Image Super-Resolution (Main Conference)</div>
+                <span class="timeline-badge">WACV Main Accepted</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2025.12</div>
+                <div class="timeline-title">IEEE Access — 날씨 분류 논문 Accepted</div>
+                <div class="timeline-desc">Multi-Modal Cross-Attention based Weather and Severity Level Classification (SCI Q1)</div>
+                <span class="timeline-badge">SCI Q1 Accepted</span>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">진행중</div>
+                <div class="timeline-title">CVIU — SpectraDiff 논문 (Review Completed)</div>
+                <div class="timeline-desc">Enhancing Infrared Image Translation with Object-Aware Diffusion (SCI Q1)</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">진행중</div>
+                <div class="timeline-title">Information Fusion — RM-MLLM 논문 (Submitted)</div>
+                <div class="timeline-desc">Robust Scene Understanding in Adverse Weather with RGB-Multispectral Fusion (SCI IF Top 1.7%)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Publications -->
+<section id="publications">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Publications</div>
+            <h2 class="section-title">논문 실적 <span style="color: var(--text-muted); font-size: 1rem; font-weight: 400;">(Total: 9편 · SCI 7편)</span></h2>
+        </div>
+        <div class="pub-grid">
+            <div class="pub-card featured fade-in">
+                <span class="pub-number">★</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">Measurement</span>
+                    <span class="pub-level">SCI · SJR Top 5.5%</span>
+                    <span class="pub-status">Published · 2025.11</span>
+                </div>
+                <div class="pub-title">Seeing through the rain: An empirical assessment of short-wave infrared imaging on enhancing autonomous vehicle perception under rainy weather</div>
+                <div class="pub-role"><strong>★ 1저자</strong> — 실험 설계, 데이터 취득, 논문 작성 전체 수행</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">01</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">Applied Sciences</span>
+                    <span class="pub-level">SCI</span>
+                    <span class="pub-status">Published · 2024.11</span>
+                </div>
+                <div class="pub-title">Short-Wave Infrared (SWIR) Imaging for Robust Material Classification: Overcoming Limitations of Visible Spectrum Data</div>
+                <div class="pub-role">역할: 데이터 취득, 논문 번역, Related Work 작성</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">02</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">Applied Sciences</span>
+                    <span class="pub-level">SCI</span>
+                    <span class="pub-status">Published · 2025.04</span>
+                </div>
+                <div class="pub-title">Exploring the Limits of Large Language Models' Ability to Distinguish Between Objects</div>
+                <div class="pub-role">역할: 데이터 취득</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">03</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">ICCV2025 MIRA W.S</span>
+                    <span class="pub-level">Workshop</span>
+                    <span class="pub-status">Published · 2025.10</span>
+                </div>
+                <div class="pub-title">IVIFormer: Illumination-Aware Infrared-Visible Image Fusion via Adaptive Domain-Switching Cross Attention</div>
+                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">04</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">Information Fusion</span>
+                    <span class="pub-level">SCI · IF Top 1.7%</span>
+                    <span class="pub-status">Published · 2025.10</span>
+                </div>
+                <div class="pub-title">RASMD: RGB And SWIR Multispectral Driving Dataset for Robust Perception in Adverse Conditions</div>
+                <div class="pub-role">역할: 멀티스펙트럴 데이터셋 취득, 카메라 캘리브레이션 및 이미지 정렬</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">05</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">WACV2026</span>
+                    <span class="pub-level">Main Conference</span>
+                    <span class="pub-status">Accepted · 2025.11</span>
+                </div>
+                <div class="pub-title">RPT-SR: Regional Prior Attention Transformer for Infrared Image Super-Resolution</div>
+                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">06</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">CVIU</span>
+                    <span class="pub-level">SCI · SJR Q1</span>
+                    <span class="pub-status">Review Completed</span>
+                </div>
+                <div class="pub-title">SpectraDiff: Enhancing the Fidelity of Infrared Image Translation with Object-Aware Diffusion</div>
+                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">07</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">IEEE Access</span>
+                    <span class="pub-level">SCI · SJR Q1</span>
+                    <span class="pub-status">Accepted · 2025.12</span>
+                </div>
+                <div class="pub-title">Multi-Modal Cross-Attention based Multi-Label Weather and Severity Level Classification</div>
+                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+            </div>
+
+            <div class="pub-card fade-in">
+                <span class="pub-number">08</span>
+                <div class="pub-meta">
+                    <span class="pub-journal">Information Fusion</span>
+                    <span class="pub-level">SCI · IF Top 1.7%</span>
+                    <span class="pub-status">Submitted</span>
+                </div>
+                <div class="pub-title">RM-MLLM: Robust Scene Understanding in Adverse Weather with RGB-Multispectral Fusion</div>
+                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Achievements</div>
+            <h2 class="section-title">특허 · SW · 수상</h2>
+        </div>
+        <div class="achievement-grid">
+            <div class="achievement-card fade-in">
+                <div class="achievement-icon"><i class="fas fa-cogs"></i></div>
+                <div class="achievement-title">물방울 왜곡 현상 없는 영상 데이터</div>
+                <div class="achievement-detail">특허 출원완료 · 10-2024-0160566</div>
+                <div class="achievement-date">2024.11.12</div>
+            </div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-icon"><i class="fas fa-cogs"></i></div>
+                <div class="achievement-title">왜곡 제거 이미지 획득 방법 및 장치</div>
+                <div class="achievement-detail">특허 출원완료 · 10-2025-0015158</div>
+                <div class="achievement-date">2025.02.06</div>
+            </div>
+            <div class="achievement-card fade-in">
+                <div class="achievement-icon"><i class="fas fa-code"></i></div>
+                <div class="achievement-title">실시간 날씨 인식 S/W</div>
+                <div class="achievement-detail">소프트웨어 등록 · C-2024-048597</div>
+                <div class="achievement-date">2024.11.28</div>
+            </div>
+            <div class="achievement-card award fade-in">
+                <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+                <div class="achievement-title">2024 산학프로젝트챌린지</div>
+                <div class="achievement-detail">산업통상자원부장관상</div>
+                <div class="achievement-date">2024</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-label">Skills</div>
+            <h2 class="section-title">기술 스택</h2>
+        </div>
+        <div class="skills-grid fade-in">
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">PyTorch</div>
+            <div class="skill-tag">OpenCV</div>
+            <div class="skill-tag">Deep Learning</div>
+            <div class="skill-tag">Computer Vision</div>
+            <div class="skill-tag">SWIR Imaging</div>
+            <div class="skill-tag">Camera Calibration</div>
+            <div class="skill-tag">Image Processing</div>
+            <div class="skill-tag">Sensor Fusion</div>
+            <div class="skill-tag">Data Acquisition</div>
+            <div class="skill-tag">Linux</div>
+            <div class="skill-tag">Git</div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>
+            <a href="mailto:stlgpt3@gmail.com">stlgpt3@gmail.com</a>
+            &nbsp;·&nbsp; 여상협 (Sanghyeop Yeo) &nbsp;·&nbsp; Yonsei University
+        </p>
+    </div>
+</footer>
+
+<script>
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Smooth nav
+document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+</body>
+</html>
