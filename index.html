@@ -1,826 +1,1319 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여상협 | CV & Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sanghyeop Yeo — Researcher & Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #111118;
-            --bg-card: #16161f;
-            --bg-card-hover: #1c1c28;
-            --accent: #22d3ee;
-            --accent-dim: #0891b2;
-            --accent-glow: rgba(34, 211, 238, 0.15);
-            --gold: #e2b45a;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: #1e293b;
-            --gradient-1: linear-gradient(135deg, #0891b2, #22d3ee);
-            --gradient-2: linear-gradient(135deg, #1a1a2e, #16213e);
+            --bg: #000000;
+            --bg-elevated: #0a0a0a;
+            --surface: #111111;
+            --surface-hover: #1a1a1a;
+            --accent: #2997ff;
+            --accent-hover: #4dacff;
+            --accent-glow: rgba(41, 151, 255, 0.12);
+            --green: #30d158;
+            --orange: #ff9f0a;
+            --pink: #ff375f;
+            --purple: #bf5af2;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-muted: #6e6e73;
+            --border: #1d1d1f;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', 'Noto Sans KR', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-primary); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 3px; }
+        ::-webkit-scrollbar { width: 0; }
 
-        /* Navigation */
+        /* ============ CANVAS BACKGROUND ============ */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============ NAV ============ */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 0.8rem 0;
+            z-index: 100;
+            padding: 1rem 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        nav .container {
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav .nav-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         nav .logo {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--text);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: -0.3px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.8rem;
         }
 
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.82rem;
+            font-weight: 400;
             transition: color 0.3s;
-            letter-spacing: 0.5px;
         }
 
-        nav a:hover { color: var(--accent); }
+        nav a:hover { color: var(--text); }
 
         .container {
-            max-width: 1100px;
+            max-width: 980px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 22px;
         }
 
-        /* Hero */
+        /* ============ HERO ============ */
         .hero {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            text-align: center;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.05); }
-        }
-
-        .hero-content { position: relative; z-index: 1; }
-
-        .hero-label {
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border: 1px solid var(--accent-dim);
-            border-radius: 50px;
-            font-size: 0.75rem;
+        .hero-eyebrow {
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--accent);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.3s forwards;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1rem;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s 0.5s forwards;
         }
 
-        .hero h1 .accent { color: var(--accent); }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #2997ff, #30d158, #bf5af2);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 550px;
+            max-width: 600px;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.7s forwards;
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 2.5rem;
+        .hero-cta {
             margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s 0.9s forwards;
         }
 
-        .stat {
+        .btn {
+            padding: 0.75rem 1.8rem;
+            border-radius: 980px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover { background: var(--accent-hover); transform: scale(1.02); }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid rgba(41, 151, 255, 0.3);
+        }
+
+        .btn-ghost:hover { border-color: var(--accent); background: var(--accent-glow); }
+
+        /* ============ STATS TICKER ============ */
+        .stats-ticker {
+            padding: 4rem 0;
+            background: var(--bg-elevated);
+            border-top: 0.5px solid var(--border);
+            border-bottom: 0.5px solid var(--border);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .ticker-item {
             text-align: center;
+            min-width: 120px;
         }
 
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--accent);
+        .ticker-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
             line-height: 1;
+            margin-bottom: 0.3rem;
         }
 
-        .stat-label {
-            font-size: 0.75rem;
+        .ticker-number.blue { color: var(--accent); }
+        .ticker-number.green { color: var(--green); }
+        .ticker-number.orange { color: var(--orange); }
+        .ticker-number.purple { color: var(--purple); }
+
+        .ticker-label {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            margin-top: 0.3rem;
+            font-weight: 500;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            text-transform: uppercase;
         }
 
-        /* Section */
+        /* ============ SECTIONS ============ */
         section {
-            padding: 5rem 0;
+            padding: 8rem 0;
+            position: relative;
+            z-index: 1;
         }
 
-        .section-header {
-            margin-bottom: 3rem;
+        .section-intro {
+            text-align: center;
+            margin-bottom: 5rem;
         }
 
-        .section-label {
-            font-size: 0.75rem;
-            color: var(--accent);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        .section-eyebrow {
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
         }
 
         .section-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
         }
 
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0.7rem;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent), var(--accent-dim), transparent);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-            padding-left: 1rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.55rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--bg-primary);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .timeline-date {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-title {
+        .section-subtitle {
             font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-desc {
-            font-size: 0.9rem;
             color: var(--text-secondary);
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .timeline-badge {
-            display: inline-block;
-            padding: 0.15rem 0.6rem;
-            background: var(--accent-glow);
-            color: var(--accent);
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-top: 0.3rem;
-        }
-
-        .timeline-badge.gold {
-            background: rgba(226, 180, 90, 0.15);
-            color: var(--gold);
-        }
-
-        /* Publication Cards */
-        .pub-grid {
-            display: flex;
-            flex-direction: column;
+        /* ============ RESEARCH AREAS - BENTO GRID ============ */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
         }
 
-        .pub-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+        .bento-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            background: var(--surface-hover);
+        }
+
+        .bento-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+        }
+
+        .bento-card:hover::after {
+            border-color: rgba(41, 151, 255, 0.2);
+        }
+
+        .bento-card.large {
+            grid-column: span 2;
+            grid-row: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 380px;
+            background: linear-gradient(160deg, #0a1628 0%, #0d0d0d 100%);
+        }
+
+        .bento-card.large .bento-icon-area {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 6rem;
+            opacity: 0.08;
+            color: var(--accent);
+        }
+
+        .bento-icon {
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .bento-icon.blue { background: rgba(41, 151, 255, 0.15); color: var(--accent); }
+        .bento-icon.green { background: rgba(48, 209, 88, 0.15); color: var(--green); }
+        .bento-icon.orange { background: rgba(255, 159, 10, 0.15); color: var(--orange); }
+        .bento-icon.purple { background: rgba(191, 90, 242, 0.15); color: var(--purple); }
+        .bento-icon.pink { background: rgba(255, 55, 95, 0.15); color: var(--pink); }
+
+        .bento-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.3px;
+        }
+
+        .bento-card.large .bento-title {
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .bento-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ============ PUBLICATIONS ============ */
+        .pub-section { background: var(--bg-elevated); }
+
+        .pub-featured {
+            background: linear-gradient(160deg, #1a1000 0%, #0d0d0d 60%);
+            border: 1px solid rgba(255, 159, 10, 0.15);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .pub-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-dim);
-            transform: translateX(4px);
-        }
-
-        .pub-card.featured {
-            border-left: 3px solid var(--gold);
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(226, 180, 90, 0.05) 100%);
-        }
-
-        .pub-card.featured .pub-journal { color: var(--gold); }
-
-        .pub-number {
+        .pub-featured::before {
+            content: '★';
             position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            font-weight: 800;
-            color: rgba(255, 255, 255, 0.04);
+            top: -20px;
+            right: 40px;
+            font-size: 8rem;
+            opacity: 0.04;
+            color: var(--orange);
         }
 
-        .pub-meta {
-            display: flex;
-            gap: 0.8rem;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .pub-journal {
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .pub-level {
-            font-size: 0.7rem;
-            padding: 0.1rem 0.5rem;
-            background: var(--accent-glow);
-            color: var(--accent);
+        .pub-featured-label {
+            display: inline-block;
+            padding: 0.25rem 0.8rem;
+            background: rgba(255, 159, 10, 0.15);
+            color: var(--orange);
             border-radius: 50px;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
-        .pub-status {
-            font-size: 0.7rem;
-            color: var(--text-muted);
+        .pub-featured h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
         }
 
-        .pub-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            line-height: 1.5;
-            margin-bottom: 0.5rem;
-        }
-
-        .pub-role {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .pub-role strong {
-            color: var(--accent);
-        }
-
-        /* Achievement Cards */
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .pub-featured-meta {
+            display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
-        .achievement-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
+        .pub-featured-meta span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .pub-featured-meta strong { color: var(--orange); }
+
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .pub-item {
+            display: grid;
+            grid-template-columns: 3rem 1fr auto;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.2rem 1.5rem;
+            background: var(--surface);
+            border-radius: 16px;
+            transition: all 0.3s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pub-item:hover {
+            background: var(--surface-hover);
+            transform: translateX(6px);
+        }
+
+        .pub-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pub-item:hover::before { opacity: 1; }
+
+        .pub-num {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .pub-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            margin-bottom: 0.2rem;
+            line-height: 1.4;
+        }
+
+        .pub-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .pub-badges {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .pub-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .pub-badge.sci { background: rgba(41, 151, 255, 0.12); color: var(--accent); }
+        .pub-badge.top { background: rgba(48, 209, 88, 0.12); color: var(--green); }
+        .pub-badge.conf { background: rgba(191, 90, 242, 0.12); color: var(--purple); }
+        .pub-badge.pending { background: rgba(255, 255, 255, 0.06); color: var(--text-muted); }
+
+        /* ============ ACHIEVEMENTS MARQUEE ============ */
+        .achievements-section {
+            overflow: hidden;
+            padding: 6rem 0;
+        }
+
+        .marquee-row {
+            display: flex;
+            gap: 1rem;
+            animation: marquee 30s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-row.reverse { animation-direction: reverse; }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .achievement-chip {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            white-space: nowrap;
             transition: all 0.3s;
         }
 
-        .achievement-card:hover {
-            border-color: var(--accent-dim);
-            transform: translateY(-2px);
+        .achievement-chip:hover {
+            border-color: rgba(41, 151, 255, 0.2);
+            transform: scale(1.03);
         }
 
-        .achievement-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--accent-glow);
+        .chip-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            color: var(--accent);
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
-        .achievement-card.award .achievement-icon {
-            background: rgba(226, 180, 90, 0.15);
-            color: var(--gold);
-        }
+        .chip-icon.blue { background: rgba(41, 151, 255, 0.12); color: var(--accent); }
+        .chip-icon.orange { background: rgba(255, 159, 10, 0.12); color: var(--orange); }
+        .chip-icon.green { background: rgba(48, 209, 88, 0.12); color: var(--green); }
+        .chip-icon.purple { background: rgba(191, 90, 242, 0.12); color: var(--purple); }
+        .chip-icon.pink { background: rgba(255, 55, 95, 0.12); color: var(--pink); }
 
-        .achievement-title {
-            font-size: 1rem;
+        .chip-text strong {
+            display: block;
+            font-size: 0.85rem;
             font-weight: 600;
+        }
+
+        .chip-text span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ============ TIMELINE ============ */
+        .timeline-section { background: var(--bg-elevated); }
+
+        .timeline-container {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--purple), transparent);
+        }
+
+        .tl-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .tl-item:nth-child(odd) { flex-direction: row; }
+        .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+        .tl-content {
+            width: 45%;
+            padding: 1.2rem;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s;
+        }
+
+        .tl-content:hover {
+            border-color: rgba(41, 151, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 50%;
+            top: 1.4rem;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-elevated);
+            z-index: 2;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .tl-date {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
             margin-bottom: 0.3rem;
         }
 
-        .achievement-detail {
-            font-size: 0.85rem;
+        .tl-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .tl-desc {
+            font-size: 0.8rem;
             color: var(--text-secondary);
+            margin-top: 0.2rem;
         }
 
-        .achievement-date {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .skill-tag {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 0.7rem 1rem;
+        /* ============ CONTACT ============ */
+        .contact-section {
             text-align: center;
-            font-size: 0.85rem;
+            padding: 10rem 0;
+            position: relative;
+        }
+
+        .contact-section h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            background: var(--surface);
+            border-radius: 980px;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.05rem;
             font-weight: 500;
             transition: all 0.3s;
         }
 
-        .skill-tag:hover {
+        .contact-email:hover {
             border-color: var(--accent);
-            color: var(--accent);
+            background: var(--accent-glow);
+            transform: scale(1.03);
         }
 
-        /* Footer */
+        /* ============ FOOTER ============ */
         footer {
-            padding: 3rem 0;
-            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            border-top: 0.5px solid var(--border);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         footer p {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
         }
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-stats { gap: 1.5rem; }
-            .stat-number { font-size: 1.6rem; }
-            nav ul { gap: 1rem; }
-            nav a { font-size: 0.75rem; }
-            .container { padding: 0 1.2rem; }
-            .section-title { font-size: 1.5rem; }
-        }
-
-        /* Animations */
-        .fade-in {
+        /* ============ SCROLL ANIMATIONS ============ */
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s, transform 0.6s;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .fade-in.visible {
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ MAGNETIC CURSOR ============ */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(41, 151, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-card.large {
+                grid-column: span 1;
+                grid-row: span 1;
+                min-height: 250px;
+            }
+
+            .hero h1 { letter-spacing: -1.5px; }
+
+            .pub-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .pub-num { display: none; }
+            .pub-badges { justify-content: flex-start; }
+
+            .ticker-track { gap: 2rem; }
+            .ticker-number { font-size: 2.5rem; }
+
+            .timeline-line { left: 20px; }
+            .tl-item, .tl-item:nth-child(even) {
+                flex-direction: row !important;
+                padding-left: 50px;
+            }
+            .tl-content { width: 100%; }
+            .tl-dot { left: 20px !important; }
+
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.72rem; }
+
+            section { padding: 5rem 0; }
+        }
+
+        /* ============ STAGGER CHILDREN ============ */
+        .stagger > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stagger.visible > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(2) { transition-delay: 0.08s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(3) { transition-delay: 0.16s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(4) { transition-delay: 0.24s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(5) { transition-delay: 0.32s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(6) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(7) { transition-delay: 0.48s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(8) { transition-delay: 0.56s; opacity: 1; transform: translateY(0); }
+        .stagger.visible > *:nth-child(9) { transition-delay: 0.64s; opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav>
-    <div class="container">
-        <a href="#" class="logo">YSH</a>
+<canvas id="particle-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+    <div class="nav-inner">
+        <a href="#" class="logo">Sanghyeop Yeo</a>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#research">Research</a></li>
             <li><a href="#publications">Publications</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 </nav>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero">
+    <div class="hero-eyebrow">M.S. Candidate · Yonsei University</div>
+    <h1>
+        Building<br>
+        <span class="gradient-text">Robust Perception</span><br>
+        Systems
+    </h1>
+    <p class="hero-subtitle">
+        Researching SWIR imaging and multispectral sensor fusion for autonomous driving
+        perception in adverse weather conditions.
+    </p>
+    <div class="hero-cta">
+        <a href="#publications" class="btn btn-primary">View Publications</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-ticker">
     <div class="container">
-        <div class="hero-content">
-            <div class="hero-label">Researcher & Engineer</div>
-            <h1>여상협<br><span class="accent">Sanghyeop Yeo</span></h1>
-            <p class="hero-subtitle">
-                연세대학교 IT융합공학과 석사과정 · Seamless Transportation Lab (STL)<br>
-                SWIR 이미징, 멀티스펙트럴 센서 융합, 자율주행 인지시스템 연구
-            </p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">9</div>
-                    <div class="stat-label">Publications</div>
+        <div class="ticker-track reveal">
+            <div class="ticker-item">
+                <div class="ticker-number blue" data-target="9" data-suffix="">0</div>
+                <div class="ticker-label">Publications</div>
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-number green" data-target="7" data-suffix="">0</div>
+                <div class="ticker-label">SCI Papers</div>
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-number orange" data-target="2" data-suffix="">0</div>
+                <div class="ticker-label">Patents</div>
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-number purple" data-target="1" data-suffix="">0</div>
+                <div class="ticker-label">Software</div>
+            </div>
+            <div class="ticker-item">
+                <div class="ticker-number blue" data-target="1" data-suffix="">0</div>
+                <div class="ticker-label">Minister Award</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RESEARCH AREAS -->
+<section id="research">
+    <div class="container">
+        <div class="section-intro reveal">
+            <div class="section-eyebrow">Research Focus</div>
+            <h2 class="section-title">Exploring the boundaries of<br>machine perception.</h2>
+            <p class="section-subtitle">Seamless Transportation Lab (STL), Yonsei University</p>
+        </div>
+        <div class="bento-grid stagger">
+            <div class="bento-card large">
+                <div class="bento-icon-area"><i class="fas fa-eye"></i></div>
+                <div class="bento-icon blue"><i class="fas fa-camera"></i></div>
+                <div class="bento-title">Short-Wave Infrared (SWIR) Imaging</div>
+                <div class="bento-desc">Leveraging SWIR cameras to see through rain, fog, and adverse weather conditions where visible spectrum fails.</div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon green"><i class="fas fa-layer-group"></i></div>
+                <div class="bento-title">Sensor Fusion</div>
+                <div class="bento-desc">Combining RGB, SWIR, and NIR data for robust multispectral perception.</div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon orange"><i class="fas fa-car"></i></div>
+                <div class="bento-title">Autonomous Driving</div>
+                <div class="bento-desc">Building perception systems that work reliably in real-world adverse conditions.</div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon purple"><i class="fas fa-brain"></i></div>
+                <div class="bento-title">Deep Learning</div>
+                <div class="bento-desc">Image translation, super-resolution, and object detection with neural networks.</div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-icon pink"><i class="fas fa-database"></i></div>
+                <div class="bento-title">Dataset Construction</div>
+                <div class="bento-desc">Building large-scale multispectral driving datasets with calibrated multi-camera rigs.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="pub-section">
+    <div class="container">
+        <div class="section-intro reveal">
+            <div class="section-eyebrow">Publications</div>
+            <h2 class="section-title">9 papers. 7 SCI journals.<br>1 first-author in a top journal.</h2>
+        </div>
+
+        <!-- Featured -->
+        <div class="pub-featured reveal-scale">
+            <div class="pub-featured-label"><i class="fas fa-star"></i> First Author</div>
+            <h3>Seeing through the rain: An empirical assessment of short-wave infrared imaging on enhancing autonomous vehicle perception under rainy weather</h3>
+            <div class="pub-featured-meta">
+                <span><strong>Measurement</strong> · SCI</span>
+                <span>SJR Top 5.5%</span>
+                <span>Published Nov 2025</span>
+                <span>Full ownership: experiment design, data acquisition, paper writing</span>
+            </div>
+        </div>
+
+        <!-- List -->
+        <div class="pub-list stagger">
+            <div class="pub-item">
+                <div class="pub-num">01</div>
+                <div class="pub-info">
+                    <h4>SWIR Imaging for Robust Material Classification</h4>
+                    <p>Applied Sciences · Published Nov 2024 · Data acquisition, translation, related work</p>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">2</div>
-                    <div class="stat-label">Patents</div>
+                <div class="pub-badges">
+                    <span class="pub-badge sci">SCI</span>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">Software</div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">02</div>
+                <div class="pub-info">
+                    <h4>Exploring the Limits of LLMs' Ability to Distinguish Between Objects</h4>
+                    <p>Applied Sciences · Published Apr 2025 · Data acquisition</p>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">Minister Award</div>
+                <div class="pub-badges">
+                    <span class="pub-badge sci">SCI</span>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">03</div>
+                <div class="pub-info">
+                    <h4>IVIFormer: Illumination-Aware IR-Visible Image Fusion</h4>
+                    <p>ICCV 2025 MIRA Workshop · Published Oct 2025 · Co-author</p>
+                </div>
+                <div class="pub-badges">
+                    <span class="pub-badge conf">Workshop</span>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">04</div>
+                <div class="pub-info">
+                    <h4>RASMD: RGB & SWIR Multispectral Driving Dataset</h4>
+                    <p>Information Fusion · Published Oct 2025 · Dataset acquisition, calibration, alignment</p>
+                </div>
+                <div class="pub-badges">
+                    <span class="pub-badge sci">SCI</span>
+                    <span class="pub-badge top">IF Top 1.7%</span>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">05</div>
+                <div class="pub-info">
+                    <h4>RPT-SR: Regional Prior Attention Transformer for IR Super-Resolution</h4>
+                    <p>WACV 2026 · Accepted Nov 2025 · Co-author</p>
+                </div>
+                <div class="pub-badges">
+                    <span class="pub-badge conf">Main Conf.</span>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">06</div>
+                <div class="pub-info">
+                    <h4>SpectraDiff: Enhancing IR Image Translation with Object-Aware Diffusion</h4>
+                    <p>CVIU · Review completed · Co-author</p>
+                </div>
+                <div class="pub-badges">
+                    <span class="pub-badge sci">SCI Q1</span>
+                    <span class="pub-badge pending">In Review</span>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">07</div>
+                <div class="pub-info">
+                    <h4>Multi-Modal Cross-Attention Weather & Severity Classification</h4>
+                    <p>IEEE Access · Accepted Dec 2025 · Co-author</p>
+                </div>
+                <div class="pub-badges">
+                    <span class="pub-badge sci">SCI Q1</span>
+                </div>
+            </div>
+            <div class="pub-item">
+                <div class="pub-num">08</div>
+                <div class="pub-info">
+                    <h4>RM-MLLM: Robust Scene Understanding with RGB-Multispectral Fusion</h4>
+                    <p>Information Fusion · Submitted · Co-author</p>
+                </div>
+                <div class="pub-badges">
+                    <span class="pub-badge sci">SCI</span>
+                    <span class="pub-badge top">IF Top 1.7%</span>
+                    <span class="pub-badge pending">Submitted</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About -->
-<section id="about">
-    <div class="container">
-        <div class="section-header fade-in">
-            <div class="section-label">About Me</div>
-            <h2 class="section-title">연구 소개</h2>
-        </div>
-        <div class="fade-in" style="max-width: 700px; color: var(--text-secondary); font-size: 0.95rem;">
-            <p style="margin-bottom: 1rem;">
-                연세대학교 IT융합공학과 Seamless Transportation Lab에서 석사과정을 수행하고 있습니다.
-                주로 <strong style="color: var(--accent);">Short-Wave Infrared (SWIR) 이미징</strong>과
-                <strong style="color: var(--accent);">멀티스펙트럴 센서 융합</strong>을 활용하여
-                악천후 환경에서의 강건한 자율주행 인지시스템 연구를 진행하고 있습니다.
-            </p>
-            <p>
-                입학 이후 SCI 논문 7편을 포함한 총 9편의 논문에 참여하였으며,
-                그 중 1저자 논문 1편(SCI SJR Top 5.5%)을 게재하였습니다.
-                또한 특허 2건 출원, 소프트웨어 1건 등록, 산업통상자원부장관상 수상 등의 성과를 이루었습니다.
-            </p>
-        </div>
+<!-- ACHIEVEMENTS MARQUEE -->
+<div class="achievements-section">
+    <div class="section-intro reveal" style="padding: 0 22px;">
+        <div class="section-eyebrow">Achievements</div>
+        <h2 class="section-title" style="font-size: 2rem;">Patents, Software & Awards</h2>
     </div>
-</section>
-
-<!-- Timeline -->
-<section id="timeline" style="background: var(--bg-secondary);">
-    <div class="container">
-        <div class="section-header fade-in">
-            <div class="section-label">Timeline</div>
-            <h2 class="section-title">주요 활동 타임라인</h2>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2024.11</div>
-                <div class="timeline-title">Applied Sciences — SWIR 재질구분 논문 게재</div>
-                <div class="timeline-desc">Short-Wave Infrared Imaging for Robust Material Classification (SCI)</div>
-                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--text-primary);">역할:</strong> 데이터 취득, 논문 번역, Related Work 작성</div>
-                <span class="timeline-badge">SCI Published</span>
+    <div style="margin-top: 3rem;">
+        <div class="marquee-row">
+            <div class="achievement-chip">
+                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
+                <div class="chip-text"><strong>Raindrop-Free Image Data</strong><span>Patent · 10-2024-0160566 · Nov 2024</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2024.11</div>
-                <div class="timeline-title">특허 출원 — 물방울 왜곡 현상 없는 영상 데이터</div>
-                <div class="timeline-desc">출원번호: 10-2024-0160566</div>
+            <div class="achievement-chip">
+                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
+                <div class="chip-text"><strong>Distortion-Free Image Acquisition</strong><span>Patent · 10-2025-0015158 · Feb 2025</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2024.11</div>
-                <div class="timeline-title">소프트웨어 등록 — 실시간 날씨 인식 S/W</div>
-                <div class="timeline-desc">등록번호: C-2024-048597</div>
+            <div class="achievement-chip">
+                <div class="chip-icon green"><i class="fas fa-code"></i></div>
+                <div class="chip-text"><strong>Real-time Weather Recognition S/W</strong><span>Software Reg. · C-2024-048597 · Nov 2024</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2024</div>
-                <div class="timeline-title">산학프로젝트챌린지 — 산업통상자원부장관상 수상</div>
-                <div class="timeline-desc">데이터 취득, 발표 자료 및 프로젝트 보고서 작성</div>
-                <span class="timeline-badge gold"><i class="fas fa-trophy"></i> 장관상</span>
+            <div class="achievement-chip">
+                <div class="chip-icon orange"><i class="fas fa-trophy"></i></div>
+                <div class="chip-text"><strong>Minister of Trade, Industry & Energy Award</strong><span>Industry-Academic Project Challenge · 2024</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.02</div>
-                <div class="timeline-title">특허 출원 — 왜곡 제거 이미지 획득 방법 및 장치</div>
-                <div class="timeline-desc">출원번호: 10-2025-0015158</div>
+            <div class="achievement-chip">
+                <div class="chip-icon purple"><i class="fas fa-graduation-cap"></i></div>
+                <div class="chip-text"><strong>Yonsei University</strong><span>M.S. IT Convergence Engineering · 2024~</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.04</div>
-                <div class="timeline-title">Applied Sciences — LLM 진위판별 논문 게재</div>
-                <div class="timeline-desc">Exploring the Limits of LLMs' Ability to Distinguish Between Objects (SCI)</div>
-                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--text-primary);">역할:</strong> 데이터 취득</div>
-                <span class="timeline-badge">SCI Published</span>
+            <!-- Duplicate for seamless loop -->
+            <div class="achievement-chip">
+                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
+                <div class="chip-text"><strong>Raindrop-Free Image Data</strong><span>Patent · 10-2024-0160566 · Nov 2024</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.10</div>
-                <div class="timeline-title">ICCV2025 Workshop — IVIFormer 논문 게재</div>
-                <div class="timeline-desc">Illumination-Aware Infrared-Visible Image Fusion (MIRA Workshop)</div>
-                <span class="timeline-badge">Workshop Published</span>
+            <div class="achievement-chip">
+                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
+                <div class="chip-text"><strong>Distortion-Free Image Acquisition</strong><span>Patent · 10-2025-0015158 · Feb 2025</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.10</div>
-                <div class="timeline-title">Information Fusion — RASMD 데이터셋 논문 게재</div>
-                <div class="timeline-desc">RGB And SWIR Multispectral Driving Dataset (SCI IF Top 1.7%)</div>
-                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--text-primary);">역할:</strong> 멀티스펙트럴 데이터셋 취득, 카메라 캘리브레이션 및 이미지 정렬</div>
-                <span class="timeline-badge">SCI Top Journal</span>
+            <div class="achievement-chip">
+                <div class="chip-icon green"><i class="fas fa-code"></i></div>
+                <div class="chip-text"><strong>Real-time Weather Recognition S/W</strong><span>Software Reg. · C-2024-048597 · Nov 2024</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.11</div>
-                <div class="timeline-title">Measurement — SWIR 빗방울 투시 논문 게재 (1저자)</div>
-                <div class="timeline-desc">Seeing through the rain: SWIR imaging for autonomous vehicle perception (SCI SJR Top 5.5%)</div>
-                <div class="timeline-desc" style="margin-top: 0.2rem;"><strong style="color: var(--gold);">★ 1저자:</strong> 실험 설계, 데이터 취득, 논문 작성 전체 수행</div>
-                <span class="timeline-badge gold">★ 1st Author · SCI Top 5.5%</span>
+            <div class="achievement-chip">
+                <div class="chip-icon orange"><i class="fas fa-trophy"></i></div>
+                <div class="chip-text"><strong>Minister of Trade, Industry & Energy Award</strong><span>Industry-Academic Project Challenge · 2024</span></div>
             </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.11</div>
-                <div class="timeline-title">WACV2026 — RPT-SR 논문 Accepted</div>
-                <div class="timeline-desc">Regional Prior Attention Transformer for Infrared Image Super-Resolution (Main Conference)</div>
-                <span class="timeline-badge">WACV Main Accepted</span>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">2025.12</div>
-                <div class="timeline-title">IEEE Access — 날씨 분류 논문 Accepted</div>
-                <div class="timeline-desc">Multi-Modal Cross-Attention based Weather and Severity Level Classification (SCI Q1)</div>
-                <span class="timeline-badge">SCI Q1 Accepted</span>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">진행중</div>
-                <div class="timeline-title">CVIU — SpectraDiff 논문 (Review Completed)</div>
-                <div class="timeline-desc">Enhancing Infrared Image Translation with Object-Aware Diffusion (SCI Q1)</div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-date">진행중</div>
-                <div class="timeline-title">Information Fusion — RM-MLLM 논문 (Submitted)</div>
-                <div class="timeline-desc">Robust Scene Understanding in Adverse Weather with RGB-Multispectral Fusion (SCI IF Top 1.7%)</div>
+            <div class="achievement-chip">
+                <div class="chip-icon purple"><i class="fas fa-graduation-cap"></i></div>
+                <div class="chip-text"><strong>Yonsei University</strong><span>M.S. IT Convergence Engineering · 2024~</span></div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<!-- Publications -->
-<section id="publications">
+<!-- TIMELINE -->
+<section id="timeline" class="timeline-section">
     <div class="container">
-        <div class="section-header fade-in">
-            <div class="section-label">Publications</div>
-            <h2 class="section-title">논문 실적 <span style="color: var(--text-muted); font-size: 1rem; font-weight: 400;">(Total: 9편 · SCI 7편)</span></h2>
+        <div class="section-intro reveal">
+            <div class="section-eyebrow">Journey</div>
+            <h2 class="section-title">My research timeline.</h2>
         </div>
-        <div class="pub-grid">
-            <div class="pub-card featured fade-in">
-                <span class="pub-number">★</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">Measurement</span>
-                    <span class="pub-level">SCI · SJR Top 5.5%</span>
-                    <span class="pub-status">Published · 2025.11</span>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="tl-item reveal-left">
+                <div class="tl-content">
+                    <div class="tl-date">NOV 2024</div>
+                    <div class="tl-title">First SCI Publication</div>
+                    <div class="tl-desc">SWIR Material Classification — Applied Sciences</div>
                 </div>
-                <div class="pub-title">Seeing through the rain: An empirical assessment of short-wave infrared imaging on enhancing autonomous vehicle perception under rainy weather</div>
-                <div class="pub-role"><strong>★ 1저자</strong> — 실험 설계, 데이터 취득, 논문 작성 전체 수행</div>
+                <div class="tl-dot"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">01</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">Applied Sciences</span>
-                    <span class="pub-level">SCI</span>
-                    <span class="pub-status">Published · 2024.11</span>
+            <div class="tl-item reveal-right">
+                <div class="tl-content">
+                    <div class="tl-date">NOV 2024</div>
+                    <div class="tl-title">Patent Filed & SW Registered</div>
+                    <div class="tl-desc">Raindrop-free image data patent + Real-time weather recognition software</div>
                 </div>
-                <div class="pub-title">Short-Wave Infrared (SWIR) Imaging for Robust Material Classification: Overcoming Limitations of Visible Spectrum Data</div>
-                <div class="pub-role">역할: 데이터 취득, 논문 번역, Related Work 작성</div>
+                <div class="tl-dot"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">02</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">Applied Sciences</span>
-                    <span class="pub-level">SCI</span>
-                    <span class="pub-status">Published · 2025.04</span>
+            <div class="tl-item reveal-left">
+                <div class="tl-content" style="border-color: rgba(255, 159, 10, 0.2);">
+                    <div class="tl-date" style="color: var(--orange);">2024</div>
+                    <div class="tl-title">Minister Award <i class="fas fa-trophy" style="color: var(--orange); font-size: 0.8rem;"></i></div>
+                    <div class="tl-desc">Industry-Academic Project Challenge — Minister of Trade, Industry & Energy Award</div>
                 </div>
-                <div class="pub-title">Exploring the Limits of Large Language Models' Ability to Distinguish Between Objects</div>
-                <div class="pub-role">역할: 데이터 취득</div>
+                <div class="tl-dot" style="background: var(--orange);"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">03</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">ICCV2025 MIRA W.S</span>
-                    <span class="pub-level">Workshop</span>
-                    <span class="pub-status">Published · 2025.10</span>
+            <div class="tl-item reveal-right">
+                <div class="tl-content">
+                    <div class="tl-date">APR 2025</div>
+                    <div class="tl-title">Second SCI Paper</div>
+                    <div class="tl-desc">LLM Object Distinction — Applied Sciences</div>
                 </div>
-                <div class="pub-title">IVIFormer: Illumination-Aware Infrared-Visible Image Fusion via Adaptive Domain-Switching Cross Attention</div>
-                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+                <div class="tl-dot"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">04</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">Information Fusion</span>
-                    <span class="pub-level">SCI · IF Top 1.7%</span>
-                    <span class="pub-status">Published · 2025.10</span>
+            <div class="tl-item reveal-left">
+                <div class="tl-content">
+                    <div class="tl-date">OCT 2025</div>
+                    <div class="tl-title">ICCV Workshop + Top Journal</div>
+                    <div class="tl-desc">IVIFormer at ICCV 2025 & RASMD in Information Fusion (IF Top 1.7%)</div>
                 </div>
-                <div class="pub-title">RASMD: RGB And SWIR Multispectral Driving Dataset for Robust Perception in Adverse Conditions</div>
-                <div class="pub-role">역할: 멀티스펙트럴 데이터셋 취득, 카메라 캘리브레이션 및 이미지 정렬</div>
+                <div class="tl-dot"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">05</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">WACV2026</span>
-                    <span class="pub-level">Main Conference</span>
-                    <span class="pub-status">Accepted · 2025.11</span>
+            <div class="tl-item reveal-right">
+                <div class="tl-content" style="border-color: rgba(48, 209, 88, 0.2);">
+                    <div class="tl-date" style="color: var(--green);">NOV 2025</div>
+                    <div class="tl-title">First-Author Paper <i class="fas fa-star" style="color: var(--green); font-size: 0.8rem;"></i></div>
+                    <div class="tl-desc">Seeing through the rain — Measurement (SJR Top 5.5%)</div>
                 </div>
-                <div class="pub-title">RPT-SR: Regional Prior Attention Transformer for Infrared Image Super-Resolution</div>
-                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+                <div class="tl-dot" style="background: var(--green);"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">06</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">CVIU</span>
-                    <span class="pub-level">SCI · SJR Q1</span>
-                    <span class="pub-status">Review Completed</span>
+            <div class="tl-item reveal-left">
+                <div class="tl-content">
+                    <div class="tl-date">NOV 2025</div>
+                    <div class="tl-title">WACV 2026 Accepted</div>
+                    <div class="tl-desc">RPT-SR — Main conference paper on infrared super-resolution</div>
                 </div>
-                <div class="pub-title">SpectraDiff: Enhancing the Fidelity of Infrared Image Translation with Object-Aware Diffusion</div>
-                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+                <div class="tl-dot"></div>
             </div>
 
-            <div class="pub-card fade-in">
-                <span class="pub-number">07</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">IEEE Access</span>
-                    <span class="pub-level">SCI · SJR Q1</span>
-                    <span class="pub-status">Accepted · 2025.12</span>
+            <div class="tl-item reveal-right">
+                <div class="tl-content">
+                    <div class="tl-date">DEC 2025 ~</div>
+                    <div class="tl-title">Continued Growth</div>
+                    <div class="tl-desc">IEEE Access accepted, CVIU in review, Info Fusion submitted</div>
                 </div>
-                <div class="pub-title">Multi-Modal Cross-Attention based Multi-Label Weather and Severity Level Classification</div>
-                <div class="pub-role">역할: 연구 참여 (공저자)</div>
-            </div>
-
-            <div class="pub-card fade-in">
-                <span class="pub-number">08</span>
-                <div class="pub-meta">
-                    <span class="pub-journal">Information Fusion</span>
-                    <span class="pub-level">SCI · IF Top 1.7%</span>
-                    <span class="pub-status">Submitted</span>
-                </div>
-                <div class="pub-title">RM-MLLM: Robust Scene Understanding in Adverse Weather with RGB-Multispectral Fusion</div>
-                <div class="pub-role">역할: 연구 참여 (공저자)</div>
+                <div class="tl-dot"></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Achievements -->
-<section id="achievements" style="background: var(--bg-secondary);">
-    <div class="container">
-        <div class="section-header fade-in">
-            <div class="section-label">Achievements</div>
-            <h2 class="section-title">특허 · SW · 수상</h2>
-        </div>
-        <div class="achievement-grid">
-            <div class="achievement-card fade-in">
-                <div class="achievement-icon"><i class="fas fa-cogs"></i></div>
-                <div class="achievement-title">물방울 왜곡 현상 없는 영상 데이터</div>
-                <div class="achievement-detail">특허 출원완료 · 10-2024-0160566</div>
-                <div class="achievement-date">2024.11.12</div>
-            </div>
-            <div class="achievement-card fade-in">
-                <div class="achievement-icon"><i class="fas fa-cogs"></i></div>
-                <div class="achievement-title">왜곡 제거 이미지 획득 방법 및 장치</div>
-                <div class="achievement-detail">특허 출원완료 · 10-2025-0015158</div>
-                <div class="achievement-date">2025.02.06</div>
-            </div>
-            <div class="achievement-card fade-in">
-                <div class="achievement-icon"><i class="fas fa-code"></i></div>
-                <div class="achievement-title">실시간 날씨 인식 S/W</div>
-                <div class="achievement-detail">소프트웨어 등록 · C-2024-048597</div>
-                <div class="achievement-date">2024.11.28</div>
-            </div>
-            <div class="achievement-card award fade-in">
-                <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
-                <div class="achievement-title">2024 산학프로젝트챌린지</div>
-                <div class="achievement-detail">산업통상자원부장관상</div>
-                <div class="achievement-date">2024</div>
-            </div>
-        </div>
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+    <div class="container reveal">
+        <h2>Let's <span class="gradient-text">connect</span>.</h2>
+        <p>Open to research collaboration and industry opportunities.</p>
+        <a href="mailto:dutkdguq@yonsei.ac.kr" class="contact-email">
+            <i class="fas fa-envelope"></i>
+            dutkdguq@yonsei.ac.kr
+        </a>
     </div>
 </section>
 
-<!-- Skills -->
-<section id="skills">
-    <div class="container">
-        <div class="section-header fade-in">
-            <div class="section-label">Skills</div>
-            <h2 class="section-title">기술 스택</h2>
-        </div>
-        <div class="skills-grid fade-in">
-            <div class="skill-tag">Python</div>
-            <div class="skill-tag">PyTorch</div>
-            <div class="skill-tag">OpenCV</div>
-            <div class="skill-tag">Deep Learning</div>
-            <div class="skill-tag">Computer Vision</div>
-            <div class="skill-tag">SWIR Imaging</div>
-            <div class="skill-tag">Camera Calibration</div>
-            <div class="skill-tag">Image Processing</div>
-            <div class="skill-tag">Sensor Fusion</div>
-            <div class="skill-tag">Data Acquisition</div>
-            <div class="skill-tag">Linux</div>
-            <div class="skill-tag">Git</div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
     <div class="container">
-        <p>
-            <a href="mailto:stlgpt3@gmail.com">stlgpt3@gmail.com</a>
-            &nbsp;·&nbsp; 여상협 (Sanghyeop Yeo) &nbsp;·&nbsp; Yonsei University
-        </p>
+        <p>Sanghyeop Yeo · Yonsei University · Seamless Transportation Lab</p>
     </div>
 </footer>
 
 <script>
-// Scroll animation
+// ============ PARTICLE CANVAS ============
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = { x: 0, y: 0 };
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.3 + 0.05;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+            this.x -= dx * 0.01;
+            this.y -= dy * 0.01;
+            this.opacity = Math.min(this.opacity + 0.01, 0.5);
+        }
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(41, 151, 255, ${this.opacity})`;
+        ctx.fill();
+    }
+}
+
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(41, 151, 255, ${0.05 * (1 - dist / 120)})`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawLines();
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ============ CURSOR GLOW ============
+document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    document.getElementById('cursorGlow').style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+});
+
+// ============ NAV SCROLL ============
+window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ============ SCROLL REVEAL ============
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger').forEach(el => observer.observe(el));
+
+// ============ COUNTER ANIMATION ============
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            let current = 0;
+            const step = Math.max(1, Math.floor(target / 30));
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                el.textContent = current + suffix;
+            }, 40);
+            counterObserver.unobserve(el);
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.5 });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.ticker-number').forEach(el => counterObserver.observe(el));
 
-// Smooth nav
+// ============ SMOOTH NAV ============
 document.querySelectorAll('nav a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
         e.preventDefault();
