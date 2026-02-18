@@ -39,334 +39,269 @@
 
         ::-webkit-scrollbar { width: 0; }
 
-        /* ============ CANVAS BACKGROUND ============ */
         #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
         }
 
         /* ============ NAV ============ */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1rem 0;
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 0.8rem 0;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         nav.scrolled {
-            background: rgba(0, 0, 0, 0.72);
+            background: rgba(0,0,0,0.72);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 0.5px solid rgba(255,255,255,0.08);
         }
-
         nav .nav-inner {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 980px; margin: 0 auto; padding: 0 22px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        nav .logo {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.3px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.8rem;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 400;
-            transition: color 0.3s;
-        }
-
+        nav .logo { font-size: 1.05rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
+        nav ul { display: flex; list-style: none; gap: 1.8rem; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; font-weight: 400; transition: color 0.3s; }
         nav a:hover { color: var(--text); }
 
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 22px;
-        }
+        .container { max-width: 980px; margin: 0 auto; padding: 0 22px; }
 
         /* ============ HERO ============ */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 1;
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            position: relative; z-index: 1;
         }
-
         .hero-eyebrow {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
+            font-size: 1.1rem; font-weight: 600; color: var(--accent);
+            margin-bottom: 1rem; opacity: 0; transform: translateY(20px);
             animation: fadeUp 0.8s 0.3s forwards;
         }
-
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -3px;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 0.8s 0.5s forwards;
+            font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 900;
+            letter-spacing: -3px; line-height: 1.05; margin-bottom: 1.5rem;
+            opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s 0.5s forwards;
         }
-
         .hero h1 .gradient-text {
             background: linear-gradient(135deg, #2997ff, #30d158, #bf5af2);
             background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; animation: gradientShift 4s ease infinite;
         }
-
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            font-weight: 400;
-            opacity: 0;
-            transform: translateY(20px);
+            font-size: 1.25rem; color: var(--text-secondary); max-width: 600px;
+            font-weight: 400; opacity: 0; transform: translateY(20px);
             animation: fadeUp 0.8s 0.7s forwards;
         }
-
         .hero-cta {
-            margin-top: 2.5rem;
-            display: flex;
-            gap: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 0.9s forwards;
+            margin-top: 2.5rem; display: flex; gap: 1rem;
+            opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s 0.9s forwards;
         }
-
         .btn {
-            padding: 0.75rem 1.8rem;
-            border-radius: 980px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
+            padding: 0.75rem 1.8rem; border-radius: 980px; font-size: 0.95rem;
+            font-weight: 500; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none;
         }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
+        .btn-primary { background: var(--accent); color: white; }
         .btn-primary:hover { background: var(--accent-hover); transform: scale(1.02); }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid rgba(41, 151, 255, 0.3);
-        }
-
+        .btn-ghost { background: transparent; color: var(--accent); border: 1px solid rgba(41,151,255,0.3); }
         .btn-ghost:hover { border-color: var(--accent); background: var(--accent-glow); }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
         /* ============ STATS TICKER ============ */
         .stats-ticker {
-            padding: 4rem 0;
-            background: var(--bg-elevated);
-            border-top: 0.5px solid var(--border);
-            border-bottom: 0.5px solid var(--border);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            padding: 4rem 0; background: var(--bg-elevated);
+            border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+            position: relative; z-index: 1;
         }
-
-        .ticker-track {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .ticker-item {
-            text-align: center;
-            min-width: 120px;
-        }
-
-        .ticker-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1;
-            margin-bottom: 0.3rem;
-        }
-
+        .ticker-track { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+        .ticker-item { text-align: center; min-width: 120px; }
+        .ticker-number { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 0.3rem; }
         .ticker-number.blue { color: var(--accent); }
         .ticker-number.green { color: var(--green); }
         .ticker-number.orange { color: var(--orange); }
         .ticker-number.purple { color: var(--purple); }
-
-        .ticker-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .ticker-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
         /* ============ SECTIONS ============ */
-        section {
-            padding: 8rem 0;
-            position: relative;
-            z-index: 1;
+        section { padding: 8rem 0; position: relative; z-index: 1; }
+        .section-intro { text-align: center; margin-bottom: 5rem; }
+        .section-eyebrow { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 0.8rem; }
+        .section-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* ============ IMAGE SHOWCASE ============ */
+        .showcase-section { background: var(--bg); overflow: hidden; padding: 8rem 0; }
+
+        .showcase-header {
+            text-align: center; margin-bottom: 4rem;
+        }
+        .showcase-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
+            letter-spacing: -1.5px; line-height: 1.15;
         }
 
-        .section-intro {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-eyebrow {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-top: 1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ============ RESEARCH AREAS - BENTO GRID ============ */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .bento-card {
+        .image-compare-container {
+            max-width: 900px; margin: 0 auto 4rem; position: relative;
+            border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
             background: var(--surface);
-            border-radius: 20px;
-            padding: 2rem;
-            position: relative;
+        }
+
+        .image-compare {
+            position: relative; width: 100%; overflow: hidden; cursor: col-resize;
+            user-select: none; -webkit-user-select: none;
+        }
+
+        .image-compare img {
+            display: block; width: 100%; height: auto;
+        }
+
+        .image-compare .img-overlay {
+            position: absolute; top: 0; left: 0; width: 50%; height: 100%;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: default;
         }
 
-        .bento-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            background: var(--surface-hover);
+        .image-compare .img-overlay img {
+            width: 200%; max-width: none; height: 100%; object-fit: cover;
         }
 
-        .bento-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+        .image-compare .slider-line {
+            position: absolute; top: 0; left: 50%; width: 3px; height: 100%;
+            background: white; transform: translateX(-50%); z-index: 10;
             pointer-events: none;
         }
 
-        .bento-card:hover::after {
-            border-color: rgba(41, 151, 255, 0.2);
+        .image-compare .slider-handle {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 44px; height: 44px; border-radius: 50%; background: white;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 11; pointer-events: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
         }
 
+        .slider-handle i { color: #000; font-size: 0.8rem; }
+
+        .compare-labels {
+            position: absolute; bottom: 16px; left: 0; right: 0;
+            display: flex; justify-content: space-between; padding: 0 20px;
+            z-index: 12; pointer-events: none;
+        }
+
+        .compare-label {
+            padding: 0.3rem 0.8rem; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+
+        .compare-label.rgb { background: rgba(255,55,95,0.7); color: white; }
+        .compare-label.swir { background: rgba(41,151,255,0.7); color: white; }
+
+        .compare-caption {
+            padding: 1.2rem 2rem; text-align: center;
+        }
+
+        .compare-caption h4 {
+            font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem;
+        }
+
+        .compare-caption p {
+            font-size: 0.85rem; color: var(--text-secondary);
+        }
+
+        /* Results grid */
+        .results-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+            max-width: 900px; margin: 0 auto;
+        }
+
+        .result-card {
+            background: var(--surface); border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.04); transition: all 0.3s;
+        }
+
+        .result-card:hover { border-color: rgba(41,151,255,0.2); transform: translateY(-4px); }
+        .result-card img { width: 100%; height: auto; display: block; }
+        .result-card-text { padding: 1rem; }
+        .result-card-text h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .result-card-text p { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* ============ BENTO GRID ============ */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .bento-card {
+            background: var(--surface); border-radius: 20px; padding: 2rem;
+            position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default;
+        }
+        .bento-card:hover { transform: translateY(-4px) scale(1.01); background: var(--surface-hover); }
+        .bento-card::after {
+            content: ''; position: absolute; inset: 0; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.06); pointer-events: none;
+        }
+        .bento-card:hover::after { border-color: rgba(41,151,255,0.2); }
         .bento-card.large {
-            grid-column: span 2;
-            grid-row: span 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            min-height: 380px;
+            grid-column: span 2; grid-row: span 2; display: flex;
+            flex-direction: column; justify-content: flex-end; min-height: 380px;
             background: linear-gradient(160deg, #0a1628 0%, #0d0d0d 100%);
         }
-
         .bento-card.large .bento-icon-area {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 6rem;
-            opacity: 0.08;
-            color: var(--accent);
+            position: absolute; top: 2rem; right: 2rem; font-size: 6rem; opacity: 0.08; color: var(--accent);
         }
-
         .bento-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; margin-bottom: 1rem;
+        }
+        .bento-icon.blue { background: rgba(41,151,255,0.15); color: var(--accent); }
+        .bento-icon.green { background: rgba(48,209,88,0.15); color: var(--green); }
+        .bento-icon.orange { background: rgba(255,159,10,0.15); color: var(--orange); }
+        .bento-icon.purple { background: rgba(191,90,242,0.15); color: var(--purple); }
+        .bento-icon.pink { background: rgba(255,55,95,0.15); color: var(--pink); }
+        .bento-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.3px; }
+        .bento-card.large .bento-title { font-size: 1.8rem; letter-spacing: -0.5px; }
+        .bento-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* ============ ABOUT / BACKGROUND ============ */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
         }
 
-        .bento-icon.blue { background: rgba(41, 151, 255, 0.15); color: var(--accent); }
-        .bento-icon.green { background: rgba(48, 209, 88, 0.15); color: var(--green); }
-        .bento-icon.orange { background: rgba(255, 159, 10, 0.15); color: var(--orange); }
-        .bento-icon.purple { background: rgba(191, 90, 242, 0.15); color: var(--purple); }
-        .bento-icon.pink { background: rgba(255, 55, 95, 0.15); color: var(--pink); }
-
-        .bento-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-            letter-spacing: -0.3px;
+        .about-card {
+            background: var(--surface); border-radius: 20px; padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.04); position: relative;
+            overflow: hidden; transition: all 0.3s;
         }
 
-        .bento-card.large .bento-title {
-            font-size: 1.8rem;
-            letter-spacing: -0.5px;
+        .about-card:hover { border-color: rgba(41,151,255,0.15); }
+
+        .about-card .card-label {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--accent); margin-bottom: 1.5rem;
         }
 
-        .bento-desc {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
+        .about-item {
+            margin-bottom: 1.5rem; padding-left: 1.2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .about-item:last-child { margin-bottom: 0; }
+
+        .about-item .date {
+            font-size: 0.75rem; color: var(--accent); font-weight: 600;
+            letter-spacing: 0.5px; margin-bottom: 0.2rem;
+        }
+
+        .about-item h4 {
+            font-size: 1rem; font-weight: 600; margin-bottom: 0.15rem;
+        }
+
+        .about-item p {
+            font-size: 0.85rem; color: var(--text-secondary);
         }
 
         /* ============ PUBLICATIONS ============ */
@@ -374,444 +309,134 @@
 
         .pub-featured {
             background: linear-gradient(160deg, #1a1000 0%, #0d0d0d 60%);
-            border: 1px solid rgba(255, 159, 10, 0.15);
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255,159,10,0.15); border-radius: 24px;
+            padding: 3rem; margin-bottom: 2rem; position: relative; overflow: hidden;
         }
-
         .pub-featured::before {
-            content: '★';
-            position: absolute;
-            top: -20px;
-            right: 40px;
-            font-size: 8rem;
-            opacity: 0.04;
-            color: var(--orange);
+            content: '\2605'; position: absolute; top: -20px; right: 40px;
+            font-size: 8rem; opacity: 0.04; color: var(--orange);
         }
-
         .pub-featured-label {
-            display: inline-block;
-            padding: 0.25rem 0.8rem;
-            background: rgba(255, 159, 10, 0.15);
-            color: var(--orange);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
+            display: inline-block; padding: 0.25rem 0.8rem;
+            background: rgba(255,159,10,0.15); color: var(--orange);
+            border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem;
         }
-
         .pub-featured h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
+            font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px;
+            margin-bottom: 0.8rem; line-height: 1.4;
         }
-
-        .pub-featured-meta {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .pub-featured-meta span {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
+        .pub-featured-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .pub-featured-meta span { font-size: 0.85rem; color: var(--text-secondary); }
         .pub-featured-meta strong { color: var(--orange); }
 
-        .pub-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
+        .pub-list { display: flex; flex-direction: column; gap: 0.5rem; }
         .pub-item {
-            display: grid;
-            grid-template-columns: 3rem 1fr auto;
-            align-items: center;
-            gap: 1.2rem;
-            padding: 1.2rem 1.5rem;
-            background: var(--surface);
-            border-radius: 16px;
-            transition: all 0.3s;
-            cursor: default;
-            position: relative;
-            overflow: hidden;
+            display: grid; grid-template-columns: 3rem 1fr auto; align-items: center;
+            gap: 1.2rem; padding: 1.2rem 1.5rem; background: var(--surface);
+            border-radius: 16px; transition: all 0.3s; cursor: default;
+            position: relative; overflow: hidden;
         }
-
-        .pub-item:hover {
-            background: var(--surface-hover);
-            transform: translateX(6px);
-        }
-
+        .pub-item:hover { background: var(--surface-hover); transform: translateX(6px); }
         .pub-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--accent);
-            opacity: 0;
-            transition: opacity 0.3s;
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.3s;
         }
-
         .pub-item:hover::before { opacity: 1; }
-
-        .pub-num {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.08);
-            text-align: center;
-        }
-
-        .pub-info h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: -0.2px;
-            margin-bottom: 0.2rem;
-            line-height: 1.4;
-        }
-
-        .pub-info p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .pub-badges {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
+        .pub-num { font-size: 1.5rem; font-weight: 900; color: rgba(255,255,255,0.08); text-align: center; }
+        .pub-info h4 { font-size: 0.9rem; font-weight: 600; letter-spacing: -0.2px; margin-bottom: 0.2rem; line-height: 1.4; }
+        .pub-info p { font-size: 0.78rem; color: var(--text-muted); }
+        .pub-badges { display: flex; gap: 0.5rem; align-items: center; flex-shrink: 0; }
         .pub-badge {
-            padding: 0.2rem 0.6rem;
-            border-radius: 50px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+            padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.65rem;
+            font-weight: 600; letter-spacing: 0.5px; white-space: nowrap;
         }
-
-        .pub-badge.sci { background: rgba(41, 151, 255, 0.12); color: var(--accent); }
-        .pub-badge.top { background: rgba(48, 209, 88, 0.12); color: var(--green); }
-        .pub-badge.conf { background: rgba(191, 90, 242, 0.12); color: var(--purple); }
-        .pub-badge.pending { background: rgba(255, 255, 255, 0.06); color: var(--text-muted); }
+        .pub-badge.sci { background: rgba(41,151,255,0.12); color: var(--accent); }
+        .pub-badge.top { background: rgba(48,209,88,0.12); color: var(--green); }
+        .pub-badge.conf { background: rgba(191,90,242,0.12); color: var(--purple); }
+        .pub-badge.pending { background: rgba(255,255,255,0.06); color: var(--text-muted); }
 
         /* ============ ACHIEVEMENTS MARQUEE ============ */
-        .achievements-section {
-            overflow: hidden;
-            padding: 6rem 0;
-        }
-
+        .achievements-section { overflow: hidden; padding: 6rem 0; }
         .marquee-row {
-            display: flex;
-            gap: 1rem;
-            animation: marquee 30s linear infinite;
-            width: max-content;
+            display: flex; gap: 1rem;
+            animation: marquee 35s linear infinite; width: max-content;
         }
-
         .marquee-row.reverse { animation-direction: reverse; }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .achievement-chip {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 1.5rem;
-            background: var(--surface);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            white-space: nowrap;
-            transition: all 0.3s;
+            flex-shrink: 0; display: flex; align-items: center; gap: 0.8rem;
+            padding: 1rem 1.5rem; background: var(--surface); border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.04); white-space: nowrap; transition: all 0.3s;
         }
-
-        .achievement-chip:hover {
-            border-color: rgba(41, 151, 255, 0.2);
-            transform: scale(1.03);
-        }
-
+        .achievement-chip:hover { border-color: rgba(41,151,255,0.2); transform: scale(1.03); }
         .chip-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; flex-shrink: 0;
         }
-
-        .chip-icon.blue { background: rgba(41, 151, 255, 0.12); color: var(--accent); }
-        .chip-icon.orange { background: rgba(255, 159, 10, 0.12); color: var(--orange); }
-        .chip-icon.green { background: rgba(48, 209, 88, 0.12); color: var(--green); }
-        .chip-icon.purple { background: rgba(191, 90, 242, 0.12); color: var(--purple); }
-        .chip-icon.pink { background: rgba(255, 55, 95, 0.12); color: var(--pink); }
-
-        .chip-text strong {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .chip-text span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
+        .chip-icon.blue { background: rgba(41,151,255,0.12); color: var(--accent); }
+        .chip-icon.orange { background: rgba(255,159,10,0.12); color: var(--orange); }
+        .chip-icon.green { background: rgba(48,209,88,0.12); color: var(--green); }
+        .chip-icon.purple { background: rgba(191,90,242,0.12); color: var(--purple); }
+        .chip-text strong { display: block; font-size: 0.85rem; font-weight: 600; }
+        .chip-text span { font-size: 0.75rem; color: var(--text-muted); }
 
         /* ============ TIMELINE ============ */
         .timeline-section { background: var(--bg-elevated); }
-
-        .timeline-container {
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
+        .timeline-container { position: relative; max-width: 700px; margin: 0 auto; }
         .timeline-line {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0;
-            bottom: 0;
-            width: 2px;
+            position: absolute; left: 50%; transform: translateX(-50%);
+            top: 0; bottom: 0; width: 2px;
             background: linear-gradient(to bottom, var(--accent), var(--purple), transparent);
         }
-
-        .tl-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
+        .tl-item { display: flex; align-items: flex-start; margin-bottom: 3rem; position: relative; }
         .tl-item:nth-child(odd) { flex-direction: row; }
         .tl-item:nth-child(even) { flex-direction: row-reverse; }
-
         .tl-content {
-            width: 45%;
-            padding: 1.2rem;
-            background: var(--surface);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.3s;
+            width: 45%; padding: 1.2rem; background: var(--surface);
+            border-radius: 16px; border: 1px solid rgba(255,255,255,0.04); transition: all 0.3s;
         }
-
-        .tl-content:hover {
-            border-color: rgba(41, 151, 255, 0.15);
-            transform: scale(1.02);
-        }
-
+        .tl-content:hover { border-color: rgba(41,151,255,0.15); transform: scale(1.02); }
         .tl-dot {
-            position: absolute;
-            left: 50%;
-            top: 1.4rem;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 14px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--bg-elevated);
-            z-index: 2;
+            position: absolute; left: 50%; top: 1.4rem; transform: translateX(-50%);
+            width: 14px; height: 14px; background: var(--accent); border-radius: 50%;
+            border: 3px solid var(--bg-elevated); z-index: 2;
             box-shadow: 0 0 12px var(--accent-glow);
         }
-
-        .tl-date {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .tl-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .tl-desc {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 0.2rem;
-        }
+        .tl-date { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .tl-title { font-size: 0.9rem; font-weight: 600; }
+        .tl-desc { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.2rem; }
 
         /* ============ CONTACT ============ */
-        .contact-section {
-            text-align: center;
-            padding: 10rem 0;
-            position: relative;
-        }
-
-        .contact-section h2 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 1rem;
-        }
-
-        .contact-section p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
+        .contact-section { text-align: center; padding: 10rem 0; }
+        .contact-section h2 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -2px; margin-bottom: 1rem; }
+        .contact-section p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; }
         .contact-email {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 1rem 2rem;
-            background: var(--surface);
-            border-radius: 980px;
-            border: 1px solid var(--border);
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 500;
-            transition: all 0.3s;
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 1rem 2rem; background: var(--surface); border-radius: 980px;
+            border: 1px solid var(--border); color: var(--accent); text-decoration: none;
+            font-size: 1.05rem; font-weight: 500; transition: all 0.3s;
         }
+        .contact-email:hover { border-color: var(--accent); background: var(--accent-glow); transform: scale(1.03); }
 
-        .contact-email:hover {
-            border-color: var(--accent);
-            background: var(--accent-glow);
-            transform: scale(1.03);
-        }
-
-        /* ============ FOOTER ============ */
         footer {
-            padding: 2rem 0;
-            border-top: 0.5px solid var(--border);
-            text-align: center;
-            position: relative;
-            z-index: 1;
+            padding: 2rem 0; border-top: 0.5px solid var(--border);
+            text-align: center; position: relative; z-index: 1;
         }
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
 
-        footer p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        /* ============ ANIMATIONS ============ */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-        /* ============ SCROLL ANIMATIONS ============ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-scale.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============ MAGNETIC CURSOR ============ */
-        .cursor-glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(41, 151, 255, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s;
-        }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .bento-card.large {
-                grid-column: span 1;
-                grid-row: span 1;
-                min-height: 250px;
-            }
-
-            .hero h1 { letter-spacing: -1.5px; }
-
-            .pub-item {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-
-            .pub-num { display: none; }
-            .pub-badges { justify-content: flex-start; }
-
-            .ticker-track { gap: 2rem; }
-            .ticker-number { font-size: 2.5rem; }
-
-            .timeline-line { left: 20px; }
-            .tl-item, .tl-item:nth-child(even) {
-                flex-direction: row !important;
-                padding-left: 50px;
-            }
-            .tl-content { width: 100%; }
-            .tl-dot { left: 20px !important; }
-
-            nav ul { gap: 1rem; }
-            nav a { font-size: 0.72rem; }
-
-            section { padding: 5rem 0; }
-        }
-
-        /* ============ STAGGER CHILDREN ============ */
-        .stagger > * {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+        .stagger > * { opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.4,0,0.2,1); }
         .stagger.visible > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
         .stagger.visible > *:nth-child(2) { transition-delay: 0.08s; opacity: 1; transform: translateY(0); }
         .stagger.visible > *:nth-child(3) { transition-delay: 0.16s; opacity: 1; transform: translateY(0); }
@@ -821,6 +446,30 @@
         .stagger.visible > *:nth-child(7) { transition-delay: 0.48s; opacity: 1; transform: translateY(0); }
         .stagger.visible > *:nth-child(8) { transition-delay: 0.56s; opacity: 1; transform: translateY(0); }
         .stagger.visible > *:nth-child(9) { transition-delay: 0.64s; opacity: 1; transform: translateY(0); }
+
+        .cursor-glow {
+            position: fixed; width: 300px; height: 300px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(41,151,255,0.06) 0%, transparent 70%);
+            pointer-events: none; z-index: 0; transform: translate(-50%, -50%); transition: transform 0.1s;
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-card.large { grid-column: span 1; grid-row: span 1; min-height: 250px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: 1fr; }
+            .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .pub-num { display: none; }
+            .ticker-track { gap: 2rem; }
+            .ticker-number { font-size: 2.5rem; }
+            .timeline-line { left: 20px; }
+            .tl-item, .tl-item:nth-child(even) { flex-direction: row !important; padding-left: 50px; }
+            .tl-content { width: 100%; }
+            .tl-dot { left: 20px !important; }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.72rem; }
+            section { padding: 5rem 0; }
+        }
     </style>
 </head>
 <body>
@@ -833,8 +482,9 @@
     <div class="nav-inner">
         <a href="#" class="logo">Sanghyeop Yeo</a>
         <ul>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#showcase">SWIR</a></li>
+            <li><a href="#publications">Papers</a></li>
             <li><a href="#timeline">Timeline</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -843,16 +493,9 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-eyebrow">M.S./Ph.D. Integrated Program · Yonsei University</div>
-    <h1>
-        Building<br>
-        <span class="gradient-text">Robust Perception</span><br>
-        Systems
-    </h1>
-    <p class="hero-subtitle">
-        Researching SWIR imaging and multispectral sensor fusion for autonomous driving
-        perception in adverse weather conditions.
-    </p>
+    <div class="hero-eyebrow">Integrated M.S./Ph.D. Candidate &middot; Yonsei University</div>
+    <h1>Building<br><span class="gradient-text">Robust Perception</span><br>Systems</h1>
+    <p class="hero-subtitle">Researching SWIR imaging and multispectral sensor fusion for autonomous driving perception in adverse weather conditions.</p>
     <div class="hero-cta">
         <a href="#publications" class="btn btn-primary">View Publications</a>
         <a href="#contact" class="btn btn-ghost">Get in Touch</a>
@@ -863,32 +506,50 @@
 <div class="stats-ticker">
     <div class="container">
         <div class="ticker-track reveal">
-            <div class="ticker-item">
-                <div class="ticker-number blue" data-target="9" data-suffix="">0</div>
-                <div class="ticker-label">Publications</div>
-            </div>
-            <div class="ticker-item">
-                <div class="ticker-number green" data-target="7" data-suffix="">0</div>
-                <div class="ticker-label">SCI Papers</div>
-            </div>
-            <div class="ticker-item">
-                <div class="ticker-number orange" data-target="2" data-suffix="">0</div>
-                <div class="ticker-label">Patents</div>
-            </div>
-            <div class="ticker-item">
-                <div class="ticker-number purple" data-target="1" data-suffix="">0</div>
-                <div class="ticker-label">Software</div>
-            </div>
-            <div class="ticker-item">
-                <div class="ticker-number blue" data-target="1" data-suffix="">0</div>
-                <div class="ticker-label">Minister Award</div>
-            </div>
+            <div class="ticker-item"><div class="ticker-number blue" data-target="9">0</div><div class="ticker-label">Publications</div></div>
+            <div class="ticker-item"><div class="ticker-number green" data-target="7">0</div><div class="ticker-label">SCI Papers</div></div>
+            <div class="ticker-item"><div class="ticker-number orange" data-target="2">0</div><div class="ticker-label">Patents</div></div>
+            <div class="ticker-item"><div class="ticker-number purple" data-target="1">0</div><div class="ticker-label">Software</div></div>
+            <div class="ticker-item"><div class="ticker-number blue" data-target="1">0</div><div class="ticker-label">Minister Award</div></div>
         </div>
     </div>
 </div>
 
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="section-intro reveal">
+            <div class="section-eyebrow">Background</div>
+            <h2 class="section-title">Education & Experience</h2>
+        </div>
+        <div class="about-grid reveal">
+            <div class="about-card">
+                <div class="card-label"><i class="fas fa-graduation-cap"></i> &nbsp;Education</div>
+                <div class="about-item">
+                    <div class="date">Mar 2024 &mdash; Present</div>
+                    <h4>Yonsei University</h4>
+                    <p>Integrated M.S./Ph.D., IT Convergence Engineering<br>Seamless Transportation Lab (STL)</p>
+                </div>
+                <div class="about-item">
+                    <div class="date">Mar 2020 &mdash; Feb 2024</div>
+                    <h4>Hanyang University ERICA</h4>
+                    <p>B.S., Graduated Feb 2024</p>
+                </div>
+            </div>
+            <div class="about-card">
+                <div class="card-label"><i class="fas fa-briefcase"></i> &nbsp;Experience</div>
+                <div class="about-item">
+                    <div class="date">Sep 2020 &mdash; Jan 2024</div>
+                    <h4>Willings Inc.</h4>
+                    <p>Production Management<br>Managed manufacturing processes and production operations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- RESEARCH AREAS -->
-<section id="research">
+<section id="research" style="background: var(--bg-elevated);">
     <div class="container">
         <div class="section-intro reveal">
             <div class="section-eyebrow">Research Focus</div>
@@ -926,6 +587,64 @@
     </div>
 </section>
 
+<!-- SWIR SHOWCASE -->
+<section id="showcase" class="showcase-section">
+    <div class="container">
+        <div class="showcase-header reveal">
+            <div class="section-eyebrow">SWIR Research</div>
+            <h2>See what visible light <span class="gradient-text">can't.</span></h2>
+            <p class="section-subtitle">Drag the slider to compare RGB vs SWIR imaging in rainy conditions.</p>
+        </div>
+
+        <!-- Image Comparison Slider -->
+        <div class="image-compare-container reveal-scale">
+            <div class="image-compare" id="compareSlider">
+                <img src="images/swir_detection.jpg" alt="SWIR Object Detection">
+                <div class="img-overlay" id="imgOverlay">
+                    <img src="images/rgb_detection.jpg" alt="RGB Object Detection">
+                </div>
+                <div class="slider-line" id="sliderLine"></div>
+                <div class="slider-handle" id="sliderHandle">
+                    <i class="fas fa-arrows-left-right"></i>
+                </div>
+                <div class="compare-labels">
+                    <span class="compare-label rgb">RGB (Visible)</span>
+                    <span class="compare-label swir">SWIR (Infrared)</span>
+                </div>
+            </div>
+            <div class="compare-caption">
+                <h4>Object Detection in Rain</h4>
+                <p>SWIR imaging penetrates raindrops, providing clearer vision for autonomous vehicle perception.</p>
+            </div>
+        </div>
+
+        <!-- Results Grid -->
+        <div class="results-grid stagger">
+            <div class="result-card">
+                <img src="images/visibility.jpg" alt="Visibility Comparison">
+                <div class="result-card-text">
+                    <h4>Visibility Analysis</h4>
+                    <p>Koschmieder's law visibility comparison between RGB and SWIR</p>
+                </div>
+            </div>
+            <div class="result-card">
+                <img src="images/segmentation.jpg" alt="Segmentation Metrics">
+                <div class="result-card-text">
+                    <h4>Segmentation Metrics</h4>
+                    <p>Semantic segmentation performance comparison in rain</p>
+                </div>
+            </div>
+            <div class="result-card">
+                <img src="images/rgb_depth.jpg" alt="Depth Estimation">
+                <div class="result-card-text">
+                    <h4>Depth Estimation</h4>
+                    <p>Monocular depth estimation quality under rainy conditions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- PUBLICATIONS -->
 <section id="publications" class="pub-section">
     <div class="container">
@@ -934,109 +653,87 @@
             <h2 class="section-title">9 papers. 7 SCI journals.<br>1 first-author in a top journal.</h2>
         </div>
 
-        <!-- Featured -->
         <div class="pub-featured reveal-scale">
             <div class="pub-featured-label"><i class="fas fa-star"></i> First Author</div>
             <h3>Seeing through the rain: An empirical assessment of short-wave infrared imaging on enhancing autonomous vehicle perception under rainy weather</h3>
             <div class="pub-featured-meta">
-                <span><strong>Measurement</strong> · SCI</span>
+                <span><strong>Measurement</strong> &middot; SCI</span>
                 <span>SJR Top 5.5%</span>
                 <span>Published Nov 2025</span>
                 <span>Full ownership: experiment design, data acquisition, paper writing</span>
             </div>
         </div>
 
-        <!-- List -->
         <div class="pub-list stagger">
             <div class="pub-item">
                 <div class="pub-num">01</div>
                 <div class="pub-info">
                     <h4>SWIR Imaging for Robust Material Classification</h4>
-                    <p>Applied Sciences · Published Nov 2024 · Data acquisition, translation, related work</p>
+                    <p>Applied Sciences &middot; Published Nov 2024 &middot; 2nd~5th author: Data acquisition, translation, related work</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge sci">SCI</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge sci">SCI</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">02</div>
                 <div class="pub-info">
                     <h4>Exploring the Limits of LLMs' Ability to Distinguish Between Objects</h4>
-                    <p>Applied Sciences · Published Apr 2025 · Data acquisition</p>
+                    <p>Applied Sciences &middot; Published Apr 2025 &middot; 2nd~5th author: Data acquisition</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge sci">SCI</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge sci">SCI</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">03</div>
                 <div class="pub-info">
                     <h4>IVIFormer: Illumination-Aware IR-Visible Image Fusion</h4>
-                    <p>ICCV 2025 MIRA Workshop · Published Oct 2025 · Co-author</p>
+                    <p>ICCV 2025 MIRA Workshop &middot; Published Oct 2025 &middot; 2nd~5th author</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge conf">Workshop</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge conf">Workshop</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">04</div>
                 <div class="pub-info">
                     <h4>RASMD: RGB & SWIR Multispectral Driving Dataset</h4>
-                    <p>Information Fusion · Published Oct 2025 · Dataset acquisition, calibration, alignment</p>
+                    <p>Information Fusion &middot; Published Oct 2025 &middot; 2nd~5th author: Dataset acquisition, calibration, image alignment</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge sci">SCI</span>
-                    <span class="pub-badge top">IF Top 1.7%</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge sci">SCI</span><span class="pub-badge top">IF Top 1.7%</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">05</div>
                 <div class="pub-info">
                     <h4>RPT-SR: Regional Prior Attention Transformer for IR Super-Resolution</h4>
-                    <p>WACV 2026 · Accepted Nov 2025 · Co-author</p>
+                    <p>WACV 2026 &middot; Accepted Nov 2025 &middot; 2nd~5th author</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge conf">Main Conf.</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge conf">Main Conf.</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">06</div>
                 <div class="pub-info">
                     <h4>SpectraDiff: Enhancing IR Image Translation with Object-Aware Diffusion</h4>
-                    <p>CVIU · Review completed · Co-author</p>
+                    <p>CVIU &middot; Review completed &middot; 2nd~5th author</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge sci">SCI Q1</span>
-                    <span class="pub-badge pending">In Review</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge sci">SCI Q1</span><span class="pub-badge pending">In Review</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">07</div>
                 <div class="pub-info">
                     <h4>Multi-Modal Cross-Attention Weather & Severity Classification</h4>
-                    <p>IEEE Access · Accepted Dec 2025 · Co-author</p>
+                    <p>IEEE Access &middot; Accepted Dec 2025 &middot; 2nd~5th author</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge sci">SCI Q1</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge sci">SCI Q1</span></div>
             </div>
             <div class="pub-item">
                 <div class="pub-num">08</div>
                 <div class="pub-info">
                     <h4>RM-MLLM: Robust Scene Understanding with RGB-Multispectral Fusion</h4>
-                    <p>Information Fusion · Submitted · Co-author</p>
+                    <p>Information Fusion &middot; Submitted &middot; 2nd~5th author</p>
                 </div>
-                <div class="pub-badges">
-                    <span class="pub-badge sci">SCI</span>
-                    <span class="pub-badge top">IF Top 1.7%</span>
-                    <span class="pub-badge pending">Submitted</span>
-                </div>
+                <div class="pub-badges"><span class="pub-badge sci">SCI</span><span class="pub-badge top">IF Top 1.7%</span><span class="pub-badge pending">Submitted</span></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ACHIEVEMENTS MARQUEE -->
+<!-- ACHIEVEMENTS -->
 <div class="achievements-section">
     <div class="section-intro reveal" style="padding: 0 22px;">
         <div class="section-eyebrow">Achievements</div>
@@ -1044,47 +741,16 @@
     </div>
     <div style="margin-top: 3rem;">
         <div class="marquee-row">
-            <div class="achievement-chip">
-                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
-                <div class="chip-text"><strong>Raindrop-Free Image Data</strong><span>Patent · 10-2024-0160566 · Nov 2024</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
-                <div class="chip-text"><strong>Distortion-Free Image Acquisition</strong><span>Patent · 10-2025-0015158 · Feb 2025</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon green"><i class="fas fa-code"></i></div>
-                <div class="chip-text"><strong>Real-time Weather Recognition S/W</strong><span>Software Reg. · C-2024-048597 · Nov 2024</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon orange"><i class="fas fa-trophy"></i></div>
-                <div class="chip-text"><strong>Minister of Trade, Industry & Energy Award</strong><span>Industry-Academic Project Challenge · 2024</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon purple"><i class="fas fa-graduation-cap"></i></div>
-                <div class="chip-text"><strong>Yonsei University</strong><span>M.S. IT Convergence Engineering · 2024~</span></div>
-            </div>
-            <!-- Duplicate for seamless loop -->
-            <div class="achievement-chip">
-                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
-                <div class="chip-text"><strong>Raindrop-Free Image Data</strong><span>Patent · 10-2024-0160566 · Nov 2024</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon blue"><i class="fas fa-cog"></i></div>
-                <div class="chip-text"><strong>Distortion-Free Image Acquisition</strong><span>Patent · 10-2025-0015158 · Feb 2025</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon green"><i class="fas fa-code"></i></div>
-                <div class="chip-text"><strong>Real-time Weather Recognition S/W</strong><span>Software Reg. · C-2024-048597 · Nov 2024</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon orange"><i class="fas fa-trophy"></i></div>
-                <div class="chip-text"><strong>Minister of Trade, Industry & Energy Award</strong><span>Industry-Academic Project Challenge · 2024</span></div>
-            </div>
-            <div class="achievement-chip">
-                <div class="chip-icon purple"><i class="fas fa-graduation-cap"></i></div>
-                <div class="chip-text"><strong>Yonsei University</strong><span>M.S. IT Convergence Engineering · 2024~</span></div>
-            </div>
+            <div class="achievement-chip"><div class="chip-icon blue"><i class="fas fa-cog"></i></div><div class="chip-text"><strong>Raindrop-Free Image Data</strong><span>Patent &middot; 10-2024-0160566 &middot; Nov 2024</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon blue"><i class="fas fa-cog"></i></div><div class="chip-text"><strong>Distortion-Free Image Acquisition</strong><span>Patent &middot; 10-2025-0015158 &middot; Feb 2025</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon green"><i class="fas fa-code"></i></div><div class="chip-text"><strong>Real-time Weather Recognition S/W</strong><span>Software Reg. &middot; C-2024-048597 &middot; Nov 2024</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon orange"><i class="fas fa-trophy"></i></div><div class="chip-text"><strong>Minister of Trade, Industry & Energy Award</strong><span>Industry-Academic Project Challenge &middot; 2024</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon purple"><i class="fas fa-graduation-cap"></i></div><div class="chip-text"><strong>Yonsei University</strong><span>Integrated M.S./Ph.D. &middot; IT Convergence Engineering &middot; 2024~</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon blue"><i class="fas fa-cog"></i></div><div class="chip-text"><strong>Raindrop-Free Image Data</strong><span>Patent &middot; 10-2024-0160566 &middot; Nov 2024</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon blue"><i class="fas fa-cog"></i></div><div class="chip-text"><strong>Distortion-Free Image Acquisition</strong><span>Patent &middot; 10-2025-0015158 &middot; Feb 2025</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon green"><i class="fas fa-code"></i></div><div class="chip-text"><strong>Real-time Weather Recognition S/W</strong><span>Software Reg. &middot; C-2024-048597 &middot; Nov 2024</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon orange"><i class="fas fa-trophy"></i></div><div class="chip-text"><strong>Minister of Trade, Industry & Energy Award</strong><span>Industry-Academic Project Challenge &middot; 2024</span></div></div>
+            <div class="achievement-chip"><div class="chip-icon purple"><i class="fas fa-graduation-cap"></i></div><div class="chip-text"><strong>Yonsei University</strong><span>Integrated M.S./Ph.D. &middot; IT Convergence Engineering &middot; 2024~</span></div></div>
         </div>
     </div>
 </div>
@@ -1098,77 +764,35 @@
         </div>
         <div class="timeline-container">
             <div class="timeline-line"></div>
-
             <div class="tl-item reveal-left">
-                <div class="tl-content">
-                    <div class="tl-date">NOV 2024</div>
-                    <div class="tl-title">First SCI Publication</div>
-                    <div class="tl-desc">SWIR Material Classification — Applied Sciences</div>
-                </div>
-                <div class="tl-dot"></div>
+                <div class="tl-content"><div class="tl-date">FEB 2024</div><div class="tl-title">B.S. Graduated</div><div class="tl-desc">Hanyang University ERICA</div></div><div class="tl-dot"></div>
             </div>
-
             <div class="tl-item reveal-right">
-                <div class="tl-content">
-                    <div class="tl-date">NOV 2024</div>
-                    <div class="tl-title">Patent Filed & SW Registered</div>
-                    <div class="tl-desc">Raindrop-free image data patent + Real-time weather recognition software</div>
-                </div>
-                <div class="tl-dot"></div>
+                <div class="tl-content"><div class="tl-date">MAR 2024</div><div class="tl-title">Started Integrated M.S./Ph.D.</div><div class="tl-desc">Yonsei University &mdash; Seamless Transportation Lab</div></div><div class="tl-dot"></div>
             </div>
-
             <div class="tl-item reveal-left">
-                <div class="tl-content" style="border-color: rgba(255, 159, 10, 0.2);">
-                    <div class="tl-date" style="color: var(--orange);">2024</div>
-                    <div class="tl-title">Minister Award <i class="fas fa-trophy" style="color: var(--orange); font-size: 0.8rem;"></i></div>
-                    <div class="tl-desc">Industry-Academic Project Challenge — Minister of Trade, Industry & Energy Award</div>
-                </div>
-                <div class="tl-dot" style="background: var(--orange);"></div>
+                <div class="tl-content"><div class="tl-date">NOV 2024</div><div class="tl-title">First SCI Publication</div><div class="tl-desc">SWIR Material Classification &mdash; Applied Sciences</div></div><div class="tl-dot"></div>
             </div>
-
             <div class="tl-item reveal-right">
-                <div class="tl-content">
-                    <div class="tl-date">APR 2025</div>
-                    <div class="tl-title">Second SCI Paper</div>
-                    <div class="tl-desc">LLM Object Distinction — Applied Sciences</div>
-                </div>
-                <div class="tl-dot"></div>
+                <div class="tl-content"><div class="tl-date">NOV 2024</div><div class="tl-title">Patent Filed & SW Registered</div><div class="tl-desc">Raindrop-free image data patent + Weather recognition software</div></div><div class="tl-dot"></div>
             </div>
-
             <div class="tl-item reveal-left">
-                <div class="tl-content">
-                    <div class="tl-date">OCT 2025</div>
-                    <div class="tl-title">ICCV Workshop + Top Journal</div>
-                    <div class="tl-desc">IVIFormer at ICCV 2025 & RASMD in Information Fusion (IF Top 1.7%)</div>
-                </div>
-                <div class="tl-dot"></div>
+                <div class="tl-content" style="border-color: rgba(255,159,10,0.2);"><div class="tl-date" style="color:var(--orange);">2024</div><div class="tl-title">Minister Award <i class="fas fa-trophy" style="color:var(--orange);font-size:0.8rem;"></i></div><div class="tl-desc">Industry-Academic Project Challenge &mdash; Minister of Trade, Industry & Energy Award</div></div><div class="tl-dot" style="background:var(--orange);"></div>
             </div>
-
             <div class="tl-item reveal-right">
-                <div class="tl-content" style="border-color: rgba(48, 209, 88, 0.2);">
-                    <div class="tl-date" style="color: var(--green);">NOV 2025</div>
-                    <div class="tl-title">First-Author Paper <i class="fas fa-star" style="color: var(--green); font-size: 0.8rem;"></i></div>
-                    <div class="tl-desc">Seeing through the rain — Measurement (SJR Top 5.5%)</div>
-                </div>
-                <div class="tl-dot" style="background: var(--green);"></div>
+                <div class="tl-content"><div class="tl-date">APR 2025</div><div class="tl-title">Second SCI Paper</div><div class="tl-desc">LLM Object Distinction &mdash; Applied Sciences</div></div><div class="tl-dot"></div>
             </div>
-
             <div class="tl-item reveal-left">
-                <div class="tl-content">
-                    <div class="tl-date">NOV 2025</div>
-                    <div class="tl-title">WACV 2026 Accepted</div>
-                    <div class="tl-desc">RPT-SR — Main conference paper on infrared super-resolution</div>
-                </div>
-                <div class="tl-dot"></div>
+                <div class="tl-content"><div class="tl-date">OCT 2025</div><div class="tl-title">ICCV Workshop + Top Journal</div><div class="tl-desc">IVIFormer at ICCV 2025 & RASMD in Information Fusion (IF Top 1.7%)</div></div><div class="tl-dot"></div>
             </div>
-
             <div class="tl-item reveal-right">
-                <div class="tl-content">
-                    <div class="tl-date">DEC 2025 ~</div>
-                    <div class="tl-title">Continued Growth</div>
-                    <div class="tl-desc">IEEE Access accepted, CVIU in review, Info Fusion submitted</div>
-                </div>
-                <div class="tl-dot"></div>
+                <div class="tl-content" style="border-color: rgba(48,209,88,0.2);"><div class="tl-date" style="color:var(--green);">NOV 2025</div><div class="tl-title">First-Author Paper <i class="fas fa-star" style="color:var(--green);font-size:0.8rem;"></i></div><div class="tl-desc">Seeing through the rain &mdash; Measurement (SJR Top 5.5%)</div></div><div class="tl-dot" style="background:var(--green);"></div>
+            </div>
+            <div class="tl-item reveal-left">
+                <div class="tl-content"><div class="tl-date">NOV 2025</div><div class="tl-title">WACV 2026 Accepted</div><div class="tl-desc">RPT-SR &mdash; Main conference on infrared super-resolution</div></div><div class="tl-dot"></div>
+            </div>
+            <div class="tl-item reveal-right">
+                <div class="tl-content"><div class="tl-date">DEC 2025 ~</div><div class="tl-title">Continued Growth</div><div class="tl-desc">IEEE Access accepted, CVIU in review, Info Fusion submitted</div></div><div class="tl-dot"></div>
             </div>
         </div>
     </div>
@@ -1179,64 +803,41 @@
     <div class="container reveal">
         <h2>Let's <span class="gradient-text">connect</span>.</h2>
         <p>Open to research collaboration and industry opportunities.</p>
-        <a href="mailto:dutkdguq@yonsei.ac.kr" class="contact-email">
-            <i class="fas fa-envelope"></i>
-            dutkdguq@yonsei.ac.kr
-        </a>
+        <a href="mailto:dutkdguq@yonsei.ac.kr" class="contact-email"><i class="fas fa-envelope"></i> dutkdguq@yonsei.ac.kr</a>
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <p>Sanghyeop Yeo · Yonsei University · Seamless Transportation Lab</p>
-    </div>
-</footer>
+<footer><div class="container"><p>Sanghyeop Yeo &middot; Yonsei University &middot; Seamless Transportation Lab</p></div></footer>
 
 <script>
-// ============ PARTICLE CANVAS ============
+// ============ PARTICLES ============
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
 let mouse = { x: 0, y: 0 };
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 class Particle {
-    constructor() {
-        this.reset();
-    }
+    constructor() { this.reset(); }
     reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
         this.size = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.3; this.speedY = (Math.random() - 0.5) * 0.3;
         this.opacity = Math.random() * 0.3 + 0.05;
     }
     update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-            this.x -= dx * 0.01;
-            this.y -= dy * 0.01;
-            this.opacity = Math.min(this.opacity + 0.01, 0.5);
-        }
+        this.x += this.speedX; this.y += this.speedY;
+        const dx = mouse.x - this.x, dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 150) { this.x -= dx * 0.01; this.y -= dy * 0.01; this.opacity = Math.min(this.opacity + 0.01, 0.5); }
         if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
     }
     draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(41, 151, 255, ${this.opacity})`;
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(41,151,255,${this.opacity})`; ctx.fill();
     }
 }
 
@@ -1245,16 +846,12 @@ for (let i = 0; i < 80; i++) particles.push(new Particle());
 function drawLines() {
     for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
             if (dist < 120) {
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
                 ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(41, 151, 255, ${0.05 * (1 - dist / 120)})`;
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
+                ctx.strokeStyle = `rgba(41,151,255,${0.05*(1-dist/120)})`; ctx.lineWidth = 0.5; ctx.stroke();
             }
         }
     }
@@ -1262,56 +859,70 @@ function drawLines() {
 
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    drawLines();
+    particles.forEach(p => { p.update(); p.draw(); }); drawLines();
     requestAnimationFrame(animateParticles);
 }
 animateParticles();
 
-// ============ CURSOR GLOW ============
+// ============ CURSOR ============
 document.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    mouse.x = e.clientX; mouse.y = e.clientY;
     document.getElementById('cursorGlow').style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
 });
 
-// ============ NAV SCROLL ============
+// ============ NAV ============
 window.addEventListener('scroll', () => {
     document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
 });
 
 // ============ SCROLL REVEAL ============
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger').forEach(el => observer.observe(el));
 
-// ============ COUNTER ANIMATION ============
+// ============ COUNTER ============
 const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const el = entry.target;
-            const target = parseInt(el.dataset.target);
-            const suffix = el.dataset.suffix || '';
+            const el = entry.target, target = parseInt(el.dataset.target);
             let current = 0;
             const step = Math.max(1, Math.floor(target / 30));
             const timer = setInterval(() => {
                 current += step;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                el.textContent = current + suffix;
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = current;
             }, 40);
             counterObserver.unobserve(el);
         }
     });
 }, { threshold: 0.5 });
-
 document.querySelectorAll('.ticker-number').forEach(el => counterObserver.observe(el));
+
+// ============ IMAGE COMPARISON SLIDER ============
+const slider = document.getElementById('compareSlider');
+if (slider) {
+    const overlay = document.getElementById('imgOverlay');
+    const line = document.getElementById('sliderLine');
+    const handle = document.getElementById('sliderHandle');
+    let isDragging = false;
+
+    function updateSlider(x) {
+        const rect = slider.getBoundingClientRect();
+        let pos = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+        overlay.style.width = (pos * 100) + '%';
+        line.style.left = (pos * 100) + '%';
+        handle.style.left = (pos * 100) + '%';
+    }
+
+    slider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    slider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { isDragging = false; });
+}
 
 // ============ SMOOTH NAV ============
 document.querySelectorAll('nav a[href^="#"]').forEach(a => {
